@@ -1,0 +1,85 @@
+  <CLPI FileName="${ClipId}">
+    <type_indicator>HDMV</type_indicator>
+    <version_number>0200</version_number>
+    <ClipInfo>
+      <Clip_stream_type>1</Clip_stream_type>
+      <application_type>7</application_type>
+      <is_ATC_delta>false</is_ATC_delta>
+      <TS_type_info_block>
+        <Validity_flags>80</Validity_flags>
+        <Format_identifier>48444D56</Format_identifier>
+        <Network_information>000000000000000000</Network_information>
+        <Stream_format_name>00000000000000000000000000000000</Stream_format_name>
+      </TS_type_info_block>
+      <Select_is_ATC_delta />
+      <Select_application_type />
+    </ClipInfo>
+    <Loop_padding_word_1 />
+    <SequenceInfo>
+      <number_of_ATC_sequences>1</number_of_ATC_sequences>
+      <Loop_ATC_sequence>
+        <ATC_sequence>
+          <number_of_STC_sequences>1</number_of_STC_sequences>
+          <Loop_STC_sequence>
+            <STC_sequence>
+              <presentation_start_time>${ClipStartTime}</presentation_start_time>
+              <presentation_end_time>${ClipEndTime}</presentation_end_time>
+              ${PgsEntryList}
+            </STC_sequence>
+          </Loop_STC_sequence>
+        </ATC_sequence>
+      </Loop_ATC_sequence>
+    </SequenceInfo>
+    <Loop_padding_word_2 />
+    <ProgramInfo>
+      <number_of_program_sequences>1</number_of_program_sequences>
+      <Loop_program_sequences>
+        <program_sequences>
+          <SPN_program_sequence_start>0</SPN_program_sequence_start>
+          <program_map_PID>256</program_map_PID>
+          <number_of_streams_in_ps>2</number_of_streams_in_ps>
+          <Loop_stream_in_ps>
+          	${PgsProgInfoList}
+          </Loop_stream_in_ps>
+        </program_sequences>
+      </Loop_program_sequences>
+    </ProgramInfo>
+    <Loop_padding_word_3 />
+    <CPI>
+      <Select_CPI_data />
+    </CPI>
+    <Loop_padding_word_4 />
+    <ClipMark>
+      <length>0</length>
+    </ClipMark>
+    <Loop_padding_word_5 />
+    <Loop_padding_word_6 />
+    <HDMV_TS_Descriptor>
+      <HDMV_copy_control_descriptor>
+        <private_data_byte1>
+          <Reserved>01</Reserved>
+          <RetentionMoveMode>01</RetentionMoveMode>
+          <RetentionState>07</RetentionState>
+          <EPN>01</EPN>
+          <CCI>00</CCI>
+        </private_data_byte1>
+        <private_data_byte2>
+          <Reserved2>1F</Reserved2>
+          <ImageConstraintToken>01</ImageConstraintToken>
+          <APS>00</APS>
+        </private_data_byte2>
+      </HDMV_copy_control_descriptor>
+    </HDMV_TS_Descriptor>
+    <TP_extra_header>
+      <copy_permission_indicator>0</copy_permission_indicator>
+    </TP_extra_header>
+    <MuxOption>
+      <RECOMMEND_IG_PTS_AT_ERROR>true</RECOMMEND_IG_PTS_AT_ERROR>
+    </MuxOption>
+    <M2TSDirectoryList>
+      <TS_Intermediatefile_dir>${ClipTempDir}\${ClipId}</TS_Intermediatefile_dir>
+      <TS_Intermediatefile_RwBufferSize>10240</TS_Intermediatefile_RwBufferSize>
+      <TS_M2TS_output_dir>${ClipTsOutDir}</TS_M2TS_output_dir>
+      <TS_M2TS_output_RwBufferSize>10240</TS_M2TS_output_RwBufferSize>
+    </M2TSDirectoryList>
+  </CLPI>

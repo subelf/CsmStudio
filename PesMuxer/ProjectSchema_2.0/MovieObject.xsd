@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<xs:schema elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0.0.0000" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="MovieObjectFile">
+		<xs:annotation>
+			<xs:documentation>There must be only one element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="type_indicator" default="MOBJ">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="4"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="version_number">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="4"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="ExtensionData_start_address" type="xs:unsignedLong" minOccurs="0"/>
+				<xs:element name="reserved_for_future_use" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:hexBinary">
+							<xs:length value="28"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="MovieObjects">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="length" type="xs:unsignedLong" minOccurs="0"/>
+							<xs:element name="reserved_for_future_use" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:hexBinary">
+										<xs:length value="4"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="number_of_mobjs">
+								<xs:simpleType>
+									<xs:restriction base="xs:unsignedShort">
+										<xs:minInclusive value="0"/>
+										<xs:maxInclusive value="1001"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="Loop_MovieObject">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="MovieObject" minOccurs="0" maxOccurs="1001">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="TerminalInfo">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="resume_intention_flag" type="xs:boolean"/>
+																<xs:element name="menu_call_mask" type="xs:boolean"/>
+																<xs:element name="title_search_mask" type="xs:boolean"/>
+																<xs:element name="reserved_for_word_align" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="2"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="number_of_navigation_commands" type="xs:unsignedShort"/>
+													<xs:element name="Loop_navigation_command">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="navigation_command" minOccurs="0" maxOccurs="unbounded">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="12"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Loop_padding_word_1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="padding_word" default="FFFF" minOccurs="0" maxOccurs="unbounded">
+								<xs:simpleType>
+									<xs:restriction base="xs:hexBinary">
+										<xs:length value="2"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ExtensionData" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="length" type="xs:unsignedInt" minOccurs="0"/>
+							<xs:element name="data_block_start_address" type="xs:unsignedInt" minOccurs="0"/>
+							<xs:element name="reserved_for_word_align" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:hexBinary">
+										<xs:length value="3"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="number_of_ext_data_entries" type="xs:unsignedByte"/>
+							<xs:element name="Loop_ext_data_entries">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ext_data_entry" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="ID1" type="xs:unsignedShort"/>
+													<xs:element name="ID2" type="xs:unsignedShort"/>
+													<xs:element name="ext_data_start_address" type="xs:unsignedInt" minOccurs="0"/>
+													<xs:element name="ext_data_length" type="xs:unsignedInt" minOccurs="0"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Loop_padding_word">
+								<xs:complexType>
+									<xs:sequence minOccurs="0" maxOccurs="unbounded">
+										<xs:element name="padding_word_1" default="FFFF">
+											<xs:simpleType>
+												<xs:restriction base="xs:hexBinary">
+													<xs:length value="2"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="padding_word_2" default="FFFF">
+											<xs:simpleType>
+												<xs:restriction base="xs:hexBinary">
+													<xs:length value="2"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Loop_data_block">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="data_block" maxOccurs="unbounded">
+											<xs:complexType/>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Loop_padding_word_2">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="padding_word" default="FFFF" minOccurs="0" maxOccurs="unbounded">
+								<xs:simpleType>
+									<xs:restriction base="xs:hexBinary">
+										<xs:length value="2"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Version" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

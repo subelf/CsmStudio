@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{05E5C8A7-2FD2-4D4C-B89F-623595B52CDC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PesMuxer</RootNamespace>
+    <AssemblyName>PesMuxer</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>snk.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BluraySharp, Version=0.3.5.0, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
+      <HintPath>..\packages\BluraySharp.0.3.5\lib\net40-client\BluraySharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BluraySharp.Definations, Version=0.3.5.0, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
+      <HintPath>..\packages\BluraySharp.0.3.5\lib\net40-client\BluraySharp.Definations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BluraySharp.Entities, Version=0.3.5.0, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
+      <HintPath>..\packages\BluraySharp.0.3.5\lib\net40-client\BluraySharp.Entities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MonteCarlo.External.MuxRemoting, Version=1.0.3497.3528, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\MonteCarlo.External.MuxRemoting.dll</HintPath>
+    </Reference>
+    <Reference Include="MuxCommon, Version=2.2.1.3, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\MuxCommon.DLL</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MuxProject\Project.cs" />
+    <Compile Include="MuxProject\ClipEntry.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="MuxProject\ProjectSettings.cs" />
+    <Compile Include="MuxerSettings.cs" />
+    <Compile Include="Texplate\ITexplateContext.cs" />
+    <Compile Include="Texplate\ITexplateClause.cs" />
+    <Compile Include="Texplate\ITexplate.cs" />
+    <Compile Include="MuxProject\PgsEntry.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Texplate\Texplate.cs" />
+    <Compile Include="Texplate\TexplateClause.cs" />
+    <Compile Include="Texplate\TexplateContextBase.cs" />
+    <Compile Include="Muxer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="ProjectSchema_2.0\CLIPDescriptor.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ProjectSchema_2.0\IndexTable.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ProjectSchema_2.0\MovieObject.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ProjectSchema_2.0\MoviePlayList.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ProjectSchema_2.0\ProjectDefinition.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ProjectSchema_2.0\Templates\CLIPDescriptor.tml" />
+    <None Include="ProjectSchema_2.0\Templates\ClipInfo.tml" />
+    <None Include="ProjectSchema_2.0\Templates\ClipRefEntry.tml" />
+    <None Include="ProjectSchema_2.0\Templates\PgsEntry.tml" />
+    <None Include="ProjectSchema_2.0\Templates\PgsProgInfo.tml" />
+    <None Include="ProjectSchema_2.0\Templates\ProjectDefinition.tml" />
+    <None Include="snk.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ProjectSchema_2.0\IndexTable.xml" />
+    <Content Include="ProjectSchema_2.0\MovieObject.xml" />
+    <Content Include="ProjectSchema_2.0\MoviePlayList.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

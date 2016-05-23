@@ -1,0 +1,6 @@
+              <ESData_TS>
+                <stream_PID>${PgsPID}</stream_PID>
+                <VES_InputFilename>${PgsPes}</VES_InputFilename>
+                <MUI_InputFilename>${PgsMui}</MUI_InputFilename>
+                <ESData_RwBufferSize>10240</ESData_RwBufferSize>
+              </ESData_TS>

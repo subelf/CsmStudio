@@ -1,0 +1,17 @@
+            <streams_in_ps>
+              <stream_PID>${PgsPID}</stream_PID>
+              <StreamCodingInfo>
+                <stream_coding_type>90</stream_coding_type>
+                <Select_stream_coding_type>
+                  <PG_stream>
+                    <PG_language_code>${PgsLang}</PG_language_code>
+                    <ISRC>
+                      <country_code>00</country_code>
+                      <copyright_holder>000</copyright_holder>
+                      <recording_year>00</recording_year>
+                      <recording_number>00000</recording_number>
+                    </ISRC>
+                  </PG_stream>
+                </Select_stream_coding_type>
+              </StreamCodingInfo>
+            </streams_in_ps>

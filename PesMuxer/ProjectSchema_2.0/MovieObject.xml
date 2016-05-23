@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MovieObjectFile Version="0099" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="MovieObject.xsd">
+  <type_indicator>MOBJ</type_indicator>
+  <version_number>0200</version_number>
+  <MovieObjects>
+    <number_of_mobjs>1</number_of_mobjs>
+    <Loop_MovieObject>
+      <MovieObject>
+        <TerminalInfo>
+          <resume_intention_flag>false</resume_intention_flag>
+          <menu_call_mask>false</menu_call_mask>
+          <title_search_mask>false</title_search_mask>
+        </TerminalInfo>
+        <number_of_navigation_commands>1</number_of_navigation_commands>
+        <Loop_navigation_command>
+          <navigation_command>000000000000000000000000</navigation_command>
+        </Loop_navigation_command>
+      </MovieObject>
+    </Loop_MovieObject>
+  </MovieObjects>
+  <Loop_padding_word_1 />
+  <Loop_padding_word_2 />
+</MovieObjectFile>

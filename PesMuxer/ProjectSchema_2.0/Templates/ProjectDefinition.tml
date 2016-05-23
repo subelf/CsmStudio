@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<mstns:ProjectDefinition Version="0099" xmlns:mstns="http://tempuri.org/ProjectDefinition.xsd" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://tempuri.org/ProjectDefinition.xsd ${ProjDefSchema}">
+  <mstns:Information>
+    <mstns:ProjectName />
+    <mstns:Author />
+    <mstns:Manufacturer />
+    <mstns:DriveType>BD25/50</mstns:DriveType>
+  </mstns:Information>
+  <mstns:XML_List>
+    <mstns:IndexTableFile>${IndexXml}</mstns:IndexTableFile>
+    <mstns:MovieObjectFile>${MvObjXml}</mstns:MovieObjectFile>
+    <mstns:MoviePlayListFile>${MplsXml}</mstns:MoviePlayListFile>
+    <mstns:CLIPDescriptorFile>${ClipXml}</mstns:CLIPDescriptorFile>
+    <mstns:FSDescriptorFile />
+  </mstns:XML_List>
+  <mstns:Transaction>
+    <mstns:DB_process>
+      <mstns:IndexTable_process>false</mstns:IndexTable_process>
+      <mstns:MovieObject_process>false</mstns:MovieObject_process>
+      <mstns:MoviePlayList_List mstns:All_PlayLists="false" />
+      <mstns:CLPI_List mstns:All_CLPI="false">
+      	${ClipRefEntryList}
+      </mstns:CLPI_List>
+      <mstns:DB_dirs>
+        <mstns:DB_Intermediatefile_dir>${BdmvTempDir}</mstns:DB_Intermediatefile_dir>
+        <mstns:DB_output_dir>${BdmvOutDir}</mstns:DB_output_dir>
+      </mstns:DB_dirs>
+    </mstns:DB_process>
+    <mstns:TS_process>
+      <mstns:M2TS_List mstns:All_M2TS="false">
+      	${ClipRefEntryList}
+      </mstns:M2TS_List>
+      <mstns:TP_extra_header>
+        <mstns:copy_permission_indicator>3</mstns:copy_permission_indicator>
+      </mstns:TP_extra_header>
+    </mstns:TS_process>
+    <mstns:FS_process>false</mstns:FS_process>
+  </mstns:Transaction>
+</mstns:ProjectDefinition>

@@ -1,0 +1,1807 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<xs:schema elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0.0.0000" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="MoviePlayListFile">
+		<xs:annotation>
+			<xs:documentation>Comment describing your root element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="MPLS" minOccurs="0" maxOccurs="2000">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="type_indicator" default="MPLS">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:length value="4" fixed="false"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="version_number">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:length value="4"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="PlayList_start_address" type="xs:unsignedLong" minOccurs="0"/>
+							<xs:element name="PlayListMark_start_address" type="xs:unsignedLong" minOccurs="0"/>
+							<xs:element name="ExtensionData_start_address" type="xs:unsignedLong" minOccurs="0"/>
+							<xs:element name="reserved_for_future_use" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:hexBinary">
+										<xs:length value="20"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="AppInfoPlayList">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="length" type="xs:unsignedLong" minOccurs="0"/>
+										<xs:element name="reserved_for_future_use_1" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:hexBinary">
+													<xs:length value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="PlayList_playback_type" type="xs:unsignedByte"/>
+										<xs:element name="Select_PlayList_playback_type">
+											<xs:complexType>
+												<xs:choice>
+													<xs:element name="playback_count" type="xs:unsignedShort"/>
+													<xs:element name="reserved_for_future_use" minOccurs="0">
+														<xs:simpleType>
+															<xs:restriction base="xs:hexBinary">
+																<xs:length value="2"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:choice>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="UO_mask_table">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="reserved_for_menu_call_mask" type="xs:boolean" minOccurs="0"/>
+													<xs:element name="reserved_for_title_search_mask" type="xs:boolean" minOccurs="0"/>
+													<xs:element name="chapter_search_mask" type="xs:boolean"/>
+													<xs:element name="time_search_mask" type="xs:boolean"/>
+													<xs:element name="skip_to_next_point_mask" type="xs:boolean"/>
+													<xs:element name="skip_back_to_previous_point_mask" type="xs:boolean"/>
+													<xs:element name="reserved_for_play_FirstPlay_mask" type="xs:boolean" minOccurs="0"/>
+													<xs:element name="stop_mask" type="xs:boolean"/>
+													<xs:element name="pause_on_mask" type="xs:boolean"/>
+													<xs:element name="reserved_for_pause_off_mask" type="xs:boolean" minOccurs="0"/>
+													<xs:element name="still_off_mask" type="xs:boolean"/>
+													<xs:element name="forward_play_mask" type="xs:boolean"/>
+													<xs:element name="backward_play_mask" type="xs:boolean"/>
+													<xs:element name="resume_mask" type="xs:boolean"/>
+													<xs:element name="move_up_selected_button_mask" type="xs:boolean"/>
+													<xs:element name="move_down_selected_button_mask" type="xs:boolean"/>
+													<xs:element name="move_left_selected_button_mask" type="xs:boolean"/>
+													<xs:element name="move_right_selected_button_mask" type="xs:boolean"/>
+													<xs:element name="select_button_mask" type="xs:boolean"/>
+													<xs:element name="activate_button_mask" type="xs:boolean"/>
+													<xs:element name="select_button_and_activate_mask" type="xs:boolean"/>
+													<xs:element name="primary_audio_stream_number_change_mask" type="xs:boolean"/>
+													<xs:element name="reserved_for_PG_textST_change_mask" type="xs:boolean" minOccurs="0"/>
+													<xs:element name="angle_number_change_mask" type="xs:boolean"/>
+													<xs:element name="popup_on_mask" type="xs:boolean"/>
+													<xs:element name="popup_off_mask" type="xs:boolean"/>
+													<xs:element name="PG_textST_enable_disable_mask" type="xs:boolean"/>
+													<xs:element name="PG_textST_stream_number_change_mask" type="xs:boolean"/>
+													<xs:element name="secondary_video_enable_disable_mask" type="xs:boolean"/>
+													<xs:element name="secondary_video_stream_number_change_mask" type="xs:boolean"/>
+													<xs:element name="secondary_audio_enable_disable_mask" type="xs:boolean"/>
+													<xs:element name="secondary_audio_stream_number_change_mask" type="xs:boolean"/>
+													<xs:element name="reserved_for_PiP_PG_textST_enable_disable_mask" type="xs:boolean" minOccurs="0"/>
+													<xs:element name="PiP_PG_textST_stream_number_change_mask" type="xs:boolean"/>
+													<xs:element name="reserved_for_future_use" minOccurs="0">
+														<xs:simpleType>
+															<xs:restriction base="xs:hexBinary">
+																<xs:length value="4"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="PlayList_random_access_flag" type="xs:boolean"/>
+										<xs:element name="audio_mix_app_flag" type="xs:boolean"/>
+										<xs:element name="lossless_may_bypass_mixer_flag" type="xs:boolean"/>
+										<xs:element name="reserved_for_future_use_2" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:hexBinary">
+													<xs:length value="2"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Loop_padding_word_1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="padding_word" default="FFFF" minOccurs="0" maxOccurs="unbounded">
+											<xs:simpleType>
+												<xs:restriction base="xs:hexBinary">
+													<xs:length value="2"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="PlayList">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="length" type="xs:unsignedLong" minOccurs="0"/>
+										<xs:element name="reserved_for_future_use" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:hexBinary">
+													<xs:length value="2"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="number_of_PlayItems">
+											<xs:simpleType>
+												<xs:restriction base="xs:unsignedShort">
+													<xs:minInclusive value="1"/>
+													<xs:maxInclusive value="999"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="number_of_SubPaths">
+											<xs:simpleType>
+												<xs:restriction base="xs:unsignedShort">
+													<xs:minInclusive value="0"/>
+													<xs:maxInclusive value="255"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Loop_PlayItem">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="PlayItem" maxOccurs="999">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="length" type="xs:unsignedShort" minOccurs="0"/>
+																<xs:element name="Clip_Information_file_name">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:length value="5"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="Clip_codec_identifier" default="M2TS">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:length value="4"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="reserved_for_future_use_1" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="2"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="is_multi_angle" type="xs:boolean"/>
+																<xs:element name="connection_condition" type="xs:unsignedByte"/>
+																<xs:element name="ref_to_STC_id">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:unsignedByte">
+																			<xs:minInclusive value="0"/>
+																			<xs:maxInclusive value="254"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="IN_time" type="xs:unsignedLong"/>
+																<xs:element name="OUT_time" type="xs:unsignedLong"/>
+																<xs:element name="UO_mask_table">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="reserved_for_menu_call_mask" type="xs:boolean" minOccurs="0"/>
+																			<xs:element name="reserved_for_title_search_mask" type="xs:boolean" minOccurs="0"/>
+																			<xs:element name="chapter_search_mask" type="xs:boolean"/>
+																			<xs:element name="time_search_mask" type="xs:boolean"/>
+																			<xs:element name="skip_to_next_point_mask" type="xs:boolean"/>
+																			<xs:element name="skip_back_to_previous_point_mask" type="xs:boolean"/>
+																			<xs:element name="reserved_for_play_FirstPlay_mask" type="xs:boolean" minOccurs="0"/>
+																			<xs:element name="stop_mask" type="xs:boolean"/>
+																			<xs:element name="pause_on_mask" type="xs:boolean"/>
+																			<xs:element name="reserved_for_pause_off_mask" type="xs:boolean" minOccurs="0"/>
+																			<xs:element name="still_off_mask" type="xs:boolean"/>
+																			<xs:element name="forward_play_mask" type="xs:boolean"/>
+																			<xs:element name="backward_play_mask" type="xs:boolean"/>
+																			<xs:element name="resume_mask" type="xs:boolean"/>
+																			<xs:element name="move_up_selected_button_mask" type="xs:boolean"/>
+																			<xs:element name="move_down_selected_button_mask" type="xs:boolean"/>
+																			<xs:element name="move_left_selected_button_mask" type="xs:boolean"/>
+																			<xs:element name="move_right_selected_button_mask" type="xs:boolean"/>
+																			<xs:element name="select_button_mask" type="xs:boolean"/>
+																			<xs:element name="activate_button_mask" type="xs:boolean"/>
+																			<xs:element name="select_button_and_activate_mask" type="xs:boolean"/>
+																			<xs:element name="primary_audio_stream_number_change_mask" type="xs:boolean"/>
+																			<xs:element name="reserved_for_PG_textST_change_mask" type="xs:boolean" minOccurs="0"/>
+																			<xs:element name="angle_number_change_mask" type="xs:boolean"/>
+																			<xs:element name="popup_on_mask" type="xs:boolean"/>
+																			<xs:element name="popup_off_mask" type="xs:boolean"/>
+																			<xs:element name="PG_textST_enable_disable_mask" type="xs:boolean"/>
+																			<xs:element name="PG_textST_stream_number_change_mask" type="xs:boolean"/>
+																			<xs:element name="secondary_video_enable_disable_mask" type="xs:boolean"/>
+																			<xs:element name="secondary_video_stream_number_change_mask" type="xs:boolean"/>
+																			<xs:element name="secondary_audio_enable_disable_mask" type="xs:boolean"/>
+																			<xs:element name="secondary_audio_stream_number_change_mask" type="xs:boolean"/>
+																			<xs:element name="reserved_for_PiP_PG_textST_enable_disable_mask" type="xs:boolean" minOccurs="0"/>
+																			<xs:element name="PiP_PG_textST_stream_number_change_mask" type="xs:boolean"/>
+																			<xs:element name="reserved_for_future_use" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:hexBinary">
+																						<xs:length value="4"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="PlayItem_random_access_flag" type="xs:boolean"/>
+																<xs:element name="reserved_for_future_use_2" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="1"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="still_mode">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="1"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="Select_still_mode">
+																	<xs:complexType>
+																		<xs:choice>
+																			<xs:element name="still_time" type="xs:unsignedShort"/>
+																			<xs:element name="reserved_for_future_use" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:hexBinary">
+																						<xs:length value="2"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																		</xs:choice>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="Select_is_multi_angle">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="multi_clip_entries" minOccurs="0">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="number_of_angles">
+																							<xs:simpleType>
+																								<xs:restriction base="xs:unsignedByte">
+																									<xs:maxInclusive value="9"/>
+																									<xs:minInclusive value="2"/>
+																								</xs:restriction>
+																							</xs:simpleType>
+																						</xs:element>
+																						<xs:element name="reserved_for_future_use" minOccurs="0">
+																							<xs:simpleType>
+																								<xs:restriction base="xs:hexBinary">
+																									<xs:length value="1"/>
+																								</xs:restriction>
+																							</xs:simpleType>
+																						</xs:element>
+																						<xs:element name="is_different_audios" type="xs:boolean"/>
+																						<xs:element name="is_seamless_angle_change" type="xs:boolean"/>
+																						<xs:element name="Loop_angle">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="angle" maxOccurs="8">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="Clip_Information_file_name">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:string">
+																															<xs:length value="5"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="Clip_codec_identifier" default="M2TS">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:string">
+																															<xs:length value="4"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="ref_to_STC_id">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:unsignedByte">
+																															<xs:minInclusive value="0"/>
+																															<xs:maxInclusive value="254"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																						<xs:element name="is_different_secondary_video" type="xs:boolean" minOccurs="0"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="STN_table">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="length" type="xs:unsignedShort" minOccurs="0"/>
+																			<xs:element name="reserved_for_future_use_1" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:hexBinary">
+																						<xs:length value="2"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="number_of_primary_video_stream_entries">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:unsignedByte">
+																						<xs:minInclusive value="1"/>
+																						<xs:maxInclusive value="1"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="number_of_primary_audio_stream_entries">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:unsignedByte">
+																						<xs:minInclusive value="0"/>
+																						<xs:maxInclusive value="32"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="number_of_PG_textST_stream_entries">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:unsignedByte">
+																						<xs:minInclusive value="0"/>
+																						<xs:maxInclusive value="255"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="number_of_IG_stream_entries">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:unsignedByte">
+																						<xs:minInclusive value="0"/>
+																						<xs:maxInclusive value="32"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="number_of_secondary_audio_stream_entries">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:unsignedByte">
+																						<xs:maxInclusive value="32"/>
+																						<xs:minInclusive value="0"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="number_of_secondary_video_stream_entries">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:unsignedByte">
+																						<xs:minInclusive value="0"/>
+																						<xs:maxInclusive value="32"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="number_of_PiP_PG_textST_stream_entries_plus">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:unsignedByte">
+																						<xs:minInclusive value="0"/>
+																						<xs:maxInclusive value="32"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="reserved_for_future_use_2" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:hexBinary">
+																						<xs:length value="5"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="Loop_primary_video_stream">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="primary_video_stream">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="stream_entry">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="length" type="xs:unsignedByte" minOccurs="0"/>
+																												<xs:element name="type">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:unsignedByte">
+																															<xs:enumeration value="1"/>
+																															<xs:enumeration value="2"/>
+																															<xs:enumeration value="3"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="Select_type">
+																													<xs:complexType>
+																														<xs:choice>
+																															<xs:element name="type_1">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="ref_to_stream_PID_of_mainClip" type="xs:unsignedShort"/>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="6"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																															<xs:element name="type_2">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="ref_to_SubPath_id" type="xs:unsignedByte"/>
+																																		<xs:element name="ref_to_SubClip_entry_id" type="xs:unsignedByte"/>
+																																		<xs:element name="ref_to_stream_PID_of_subClip" type="xs:unsignedShort"/>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="4"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																															<xs:element name="type_3">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="ref_to_SubPath_id" type="xs:unsignedByte"/>
+																																		<xs:element name="ref_to_stream_PID_of_mainClip" type="xs:unsignedShort"/>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="5"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:choice>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																									<xs:element name="stream_attributes">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="length" type="xs:unsignedByte" minOccurs="0"/>
+																												<xs:element name="stream_coding_type">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:hexBinary">
+																															<xs:length value="1"/>
+																															<xs:enumeration value="02"/>
+																															<xs:enumeration value="1B"/>
+																															<xs:enumeration value="EA"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="Select_stream_coding_type">
+																													<xs:complexType>
+																														<xs:choice>
+																															<xs:element name="video_stream">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="video_format">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:unsignedByte">
+																																					<xs:minInclusive value="0"/>
+																																					<xs:maxInclusive value="15"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																		<xs:element name="frame_rate">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:unsignedByte">
+																																					<xs:minInclusive value="0"/>
+																																					<xs:maxInclusive value="15"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="3"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:choice>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="Loop_primary_audio_stream">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="primary_audio_stream" minOccurs="0" maxOccurs="32">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="stream_entry">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="length" type="xs:unsignedByte" minOccurs="0"/>
+																												<xs:element name="type">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:unsignedByte">
+																															<xs:enumeration value="1"/>
+																															<xs:enumeration value="2"/>
+																															<xs:enumeration value="3"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="Select_type">
+																													<xs:complexType>
+																														<xs:choice>
+																															<xs:element name="type_1">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="ref_to_stream_PID_of_mainClip" type="xs:unsignedShort"/>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="6"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																															<xs:element name="type_2">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="ref_to_SubPath_id" type="xs:unsignedByte"/>
+																																		<xs:element name="ref_to_SubClip_entry_id" type="xs:unsignedByte"/>
+																																		<xs:element name="ref_to_stream_PID_of_subClip" type="xs:unsignedShort"/>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="4"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																															<xs:element name="type_3">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="ref_to_SubPath_id" type="xs:unsignedByte"/>
+																																		<xs:element name="ref_to_stream_PID_of_mainClip" type="xs:unsignedShort"/>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="5"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:choice>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																									<xs:element name="stream_attributes">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="length" type="xs:unsignedByte" minOccurs="0"/>
+																												<xs:element name="stream_coding_type">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:hexBinary">
+																															<xs:length value="1"/>
+																															<xs:enumeration value="80"/>
+																															<xs:enumeration value="81"/>
+																															<xs:enumeration value="82"/>
+																															<xs:enumeration value="83"/>
+																															<xs:enumeration value="84"/>
+																															<xs:enumeration value="85"/>
+																															<xs:enumeration value="86"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="Select_stream_coding_type">
+																													<xs:complexType>
+																														<xs:choice>
+																															<xs:element name="audio_stream">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="audio_presentation_type">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:unsignedByte">
+																																					<xs:minInclusive value="0"/>
+																																					<xs:maxInclusive value="15"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																		<xs:element name="sampling_frequency">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:unsignedByte">
+																																					<xs:minInclusive value="0"/>
+																																					<xs:maxInclusive value="15"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																		<xs:element name="audio_language_code">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:string">
+																																					<xs:length value="3"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:choice>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="Loop_PG_textST_stream">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="PG_textST_stream" minOccurs="0" maxOccurs="255">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="stream_entry">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="length" type="xs:unsignedByte" minOccurs="0"/>
+																												<xs:element name="type">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:unsignedByte">
+																															<xs:enumeration value="1"/>
+																															<xs:enumeration value="2"/>
+																															<xs:enumeration value="3"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="Select_type">
+																													<xs:complexType>
+																														<xs:choice>
+																															<xs:element name="type_1">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="ref_to_stream_PID_of_mainClip" type="xs:unsignedShort"/>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="6"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																															<xs:element name="type_2">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="ref_to_SubPath_id" type="xs:unsignedByte"/>
+																																		<xs:element name="ref_to_SubClip_entry_id" type="xs:unsignedByte"/>
+																																		<xs:element name="ref_to_stream_PID_of_subClip" type="xs:unsignedShort"/>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="4"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																															<xs:element name="type_3">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="ref_to_SubPath_id" type="xs:unsignedByte"/>
+																																		<xs:element name="ref_to_stream_PID_of_mainClip" type="xs:unsignedShort"/>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="5"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:choice>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																									<xs:element name="stream_attributes">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="length" type="xs:unsignedByte" minOccurs="0"/>
+																												<xs:element name="stream_coding_type">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:hexBinary">
+																															<xs:length value="1"/>
+																															<xs:enumeration value="90"/>
+																															<xs:enumeration value="92"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="Select_stream_coding_type">
+																													<xs:complexType>
+																														<xs:choice>
+																															<xs:element name="PG_stream">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="PG_language_code">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:string">
+																																					<xs:length value="3"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="1"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																															<xs:element name="textST_stream">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="character_code" type="xs:unsignedByte"/>
+																																		<xs:element name="textST_language_code">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:string">
+																																					<xs:length value="3"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:choice>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="Loop_IG_stream">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="IG_stream" minOccurs="0" maxOccurs="32">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="stream_entry">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="length" type="xs:unsignedByte" minOccurs="0"/>
+																												<xs:element name="type">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:unsignedByte">
+																															<xs:enumeration value="1"/>
+																															<xs:enumeration value="2"/>
+																															<xs:enumeration value="3"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="Select_type">
+																													<xs:complexType>
+																														<xs:choice>
+																															<xs:element name="type_1">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="ref_to_stream_PID_of_mainClip" type="xs:unsignedShort"/>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="6"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																															<xs:element name="type_2">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="ref_to_SubPath_id" type="xs:unsignedByte"/>
+																																		<xs:element name="ref_to_SubClip_entry_id" type="xs:unsignedByte"/>
+																																		<xs:element name="ref_to_stream_PID_of_subClip" type="xs:unsignedShort"/>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="4"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																															<xs:element name="type_3">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="ref_to_SubPath_id" type="xs:unsignedByte"/>
+																																		<xs:element name="ref_to_stream_PID_of_mainClip" type="xs:unsignedShort"/>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="5"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:choice>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																									<xs:element name="stream_attributes">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="length" type="xs:unsignedByte" minOccurs="0"/>
+																												<xs:element name="stream_coding_type">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:hexBinary">
+																															<xs:length value="1"/>
+																															<xs:enumeration value="91"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="Select_stream_coding_type">
+																													<xs:complexType>
+																														<xs:choice>
+																															<xs:element name="IG_stream">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="IG_language_code">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:string">
+																																					<xs:length value="3"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="1"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:choice>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="Loop_secondary_audio_stream">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="secondary_audio_stream" minOccurs="0" maxOccurs="32">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="stream_entry">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="length" type="xs:unsignedByte" minOccurs="0"/>
+																												<xs:element name="type">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:unsignedByte">
+																															<xs:enumeration value="1"/>
+																															<xs:enumeration value="2"/>
+																															<xs:enumeration value="3"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="Select_type">
+																													<xs:complexType>
+																														<xs:choice>
+																															<xs:element name="type_1">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="ref_to_stream_PID_of_mainClip" type="xs:unsignedShort"/>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="6"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																															<xs:element name="type_2">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="ref_to_SubPath_id" type="xs:unsignedByte"/>
+																																		<xs:element name="ref_to_SubClip_entry_id" type="xs:unsignedByte"/>
+																																		<xs:element name="ref_to_stream_PID_of_subClip" type="xs:unsignedShort"/>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="4"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																															<xs:element name="type_3">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="ref_to_SubPath_id" type="xs:unsignedByte"/>
+																																		<xs:element name="ref_to_stream_PID_of_mainClip" type="xs:unsignedShort"/>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="5"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:choice>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																									<xs:element name="stream_attributes">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="length" type="xs:unsignedByte" minOccurs="0"/>
+																												<xs:element name="stream_coding_type">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:hexBinary">
+																															<xs:length value="1"/>
+																															<xs:enumeration value="A1"/>
+																															<xs:enumeration value="A2"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="Select_stream_coding_type">
+																													<xs:complexType>
+																														<xs:choice>
+																															<xs:element name="audio_stream">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="audio_presentation_type">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:unsignedByte">
+																																					<xs:minInclusive value="0"/>
+																																					<xs:maxInclusive value="15"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																		<xs:element name="sampling_frequency">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:unsignedByte">
+																																					<xs:minInclusive value="0"/>
+																																					<xs:maxInclusive value="15"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																		<xs:element name="audio_language_code">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:string">
+																																					<xs:length value="3"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:choice>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																									<xs:element name="comb_info_Secondary_audio_Primary_audio">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="number_of_primary_audio_ref_entries">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:unsignedByte">
+																															<xs:minInclusive value="0"/>
+																															<xs:maxInclusive value="32"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="reserved_for_word_align" type="xs:unsignedByte" minOccurs="0"/>
+																												<xs:element name="Loop_primary_audio_ref">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="primary_audio_ref" minOccurs="0" maxOccurs="32">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="primary_audio_id_ref" type="xs:unsignedByte"/>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="Loop_secondary_video_stream">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="secondary_video_stream" minOccurs="0" maxOccurs="32">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="stream_entry">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="length" type="xs:unsignedByte" minOccurs="0"/>
+																												<xs:element name="type">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:unsignedByte">
+																															<xs:enumeration value="1"/>
+																															<xs:enumeration value="2"/>
+																															<xs:enumeration value="3"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="Select_type">
+																													<xs:complexType>
+																														<xs:choice>
+																															<xs:element name="type_1">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="ref_to_stream_PID_of_mainClip" type="xs:unsignedShort"/>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="6"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																															<xs:element name="type_2">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="ref_to_SubPath_id" type="xs:unsignedByte"/>
+																																		<xs:element name="ref_to_SubClip_entry_id" type="xs:unsignedByte"/>
+																																		<xs:element name="ref_to_stream_PID_of_subClip" type="xs:unsignedShort"/>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="4"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																															<xs:element name="type_3">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="ref_to_SubPath_id" type="xs:unsignedByte"/>
+																																		<xs:element name="ref_to_stream_PID_of_mainClip" type="xs:unsignedShort"/>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="5"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:choice>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																									<xs:element name="stream_attributes">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="length" type="xs:unsignedByte" minOccurs="0"/>
+																												<xs:element name="stream_coding_type">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:hexBinary">
+																															<xs:length value="1"/>
+																															<xs:enumeration value="02"/>
+																															<xs:enumeration value="1B"/>
+																															<xs:enumeration value="EA"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="Select_stream_coding_type">
+																													<xs:complexType>
+																														<xs:choice>
+																															<xs:element name="video_stream">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="video_format">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:unsignedByte">
+																																					<xs:minInclusive value="0"/>
+																																					<xs:maxInclusive value="15"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																		<xs:element name="frame_rate">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:unsignedByte">
+																																					<xs:minInclusive value="0"/>
+																																					<xs:maxInclusive value="15"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																		<xs:element name="reserved_for_future_use" minOccurs="0">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:hexBinary">
+																																					<xs:length value="3"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:choice>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																									<xs:element name="comb_info_Secondary_video_Secondary_audio">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="number_of_secondary_audio_ref_entries">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:unsignedByte">
+																															<xs:minInclusive value="0"/>
+																															<xs:maxInclusive value="32"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="reserved_for_word_align" minOccurs="0">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:unsignedByte">
+																															<xs:minInclusive value="1"/>
+																															<xs:maxInclusive value="1"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="Loop_secondary_audio_ref">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="secondary_audio_ref" minOccurs="0" maxOccurs="32">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="secondary_audio_id_ref" type="xs:unsignedByte"/>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																									<xs:element name="comb_info_Secondary_video_PiP_PG_textST">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="number_of_PiP_PG_textST_ref_entries">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:unsignedByte">
+																															<xs:minInclusive value="0"/>
+																															<xs:maxInclusive value="32"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="reserved_for_word_align" minOccurs="0">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:unsignedByte">
+																															<xs:minInclusive value="1"/>
+																															<xs:maxInclusive value="1"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="Loop_PiP_PG_textST_ref">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="PiP_PG_textST_ref" minOccurs="0" maxOccurs="32">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="PiP_PG_textST_id_ref" type="xs:unsignedByte"/>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Loop_SubPath">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="SubPath" minOccurs="0" maxOccurs="255">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="length" type="xs:unsignedLong" minOccurs="0"/>
+																<xs:element name="reserved_for_future_use_1" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="1"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="SubPath_type" type="xs:unsignedByte"/>
+																<xs:element name="reserved_for_future_use_2" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="2"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="is_repeat_SubPath" type="xs:boolean"/>
+																<xs:element name="reserved_for_future_use_3" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="1"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="number_of_SubPlayItems">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:unsignedByte">
+																			<xs:minInclusive value="1"/>
+																			<xs:maxInclusive value="255"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="Loop_SubPlayItem">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="SubPlayItem" maxOccurs="255">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="length" type="xs:unsignedShort" minOccurs="0"/>
+																						<xs:element name="Clip_Information_file_name">
+																							<xs:simpleType>
+																								<xs:restriction base="xs:string">
+																									<xs:length value="5"/>
+																								</xs:restriction>
+																							</xs:simpleType>
+																						</xs:element>
+																						<xs:element name="Clip_codec_identifier" default="M2TS">
+																							<xs:simpleType>
+																								<xs:restriction base="xs:string">
+																									<xs:length value="4"/>
+																								</xs:restriction>
+																							</xs:simpleType>
+																						</xs:element>
+																						<xs:element name="reserved_for_future_use" minOccurs="0">
+																							<xs:simpleType>
+																								<xs:restriction base="xs:hexBinary">
+																									<xs:length value="4"/>
+																								</xs:restriction>
+																							</xs:simpleType>
+																						</xs:element>
+																						<xs:element name="sp_connection_condition" type="xs:unsignedByte"/>
+																						<xs:element name="is_multi_Clip_entries" type="xs:boolean"/>
+																						<xs:element name="ref_to_STC_id">
+																							<xs:simpleType>
+																								<xs:restriction base="xs:unsignedByte">
+																									<xs:minInclusive value="0"/>
+																									<xs:maxInclusive value="254"/>
+																								</xs:restriction>
+																							</xs:simpleType>
+																						</xs:element>
+																						<xs:element name="SubPlayItem_IN_time" type="xs:unsignedLong"/>
+																						<xs:element name="SubPlayItem_OUT_time" type="xs:unsignedLong"/>
+																						<xs:element name="sync_PlayItem_id">
+																							<xs:simpleType>
+																								<xs:restriction base="xs:unsignedShort">
+																									<xs:minInclusive value="0"/>
+																									<xs:maxInclusive value="998"/>
+																								</xs:restriction>
+																							</xs:simpleType>
+																						</xs:element>
+																						<xs:element name="sync_start_PTS_of_PlayItem" type="xs:unsignedLong"/>
+																						<xs:element name="Select_is_multi_Clip_entries">
+																							<xs:complexType>
+																								<xs:choice>
+																									<xs:element name="multi_clip_entries" minOccurs="0">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="number_of_Clip_entries">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:unsignedByte">
+																															<xs:minInclusive value="2"/>
+																															<xs:maxInclusive value="255"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="reserved_for_future_use" minOccurs="0">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:hexBinary">
+																															<xs:length value="1"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																												<xs:element name="Loop_subClip_entry">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="subClip_entry" maxOccurs="254">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="Clip_Information_file_name">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:string">
+																																					<xs:length value="5"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																		<xs:element name="Clip_codec_identifier" default="M2TS">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:string">
+																																					<xs:length value="4"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																		<xs:element name="ref_to_STC_id">
+																																			<xs:simpleType>
+																																				<xs:restriction base="xs:unsignedByte">
+																																					<xs:minInclusive value="0"/>
+																																					<xs:maxInclusive value="254"/>
+																																				</xs:restriction>
+																																			</xs:simpleType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:choice>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Loop_padding_word_2">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="padding_word" default="FFFF" minOccurs="0" maxOccurs="unbounded">
+											<xs:simpleType>
+												<xs:restriction base="xs:hexBinary">
+													<xs:length value="2"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="PlayListMark">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="length" type="xs:unsignedLong" minOccurs="0"/>
+										<xs:element name="number_of_PlayList_marks">
+											<xs:simpleType>
+												<xs:restriction base="xs:unsignedShort">
+													<xs:minInclusive value="1"/>
+													<xs:maxInclusive value="999"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Loop_PL_Mark">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="PL_Mark" maxOccurs="999">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="reserved_for_future_use" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="1"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="mark_type">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="1"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="ref_to_PlayItem_id">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:unsignedShort">
+																			<xs:minInclusive value="0"/>
+																			<xs:maxInclusive value="998"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="mark_time_stamp" type="xs:unsignedLong"/>
+																<xs:element name="entry_ES_PID" type="xs:unsignedShort"/>
+																<xs:element name="duration" type="xs:unsignedLong"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Loop_padding_word_3">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="padding_word" default="FFFF" minOccurs="0" maxOccurs="unbounded">
+											<xs:simpleType>
+												<xs:restriction base="xs:hexBinary">
+													<xs:length value="2"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ExtensionData" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="length" type="xs:unsignedInt" minOccurs="0"/>
+										<xs:element name="data_block_start_address" type="xs:unsignedInt" minOccurs="0"/>
+										<xs:element name="reserved_for_word_align" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:hexBinary">
+													<xs:length value="3"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="number_of_ext_data_entries" type="xs:unsignedByte"/>
+										<xs:element name="Loop_ext_data_entries">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="ext_data_entry" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="ID1" type="xs:unsignedShort"/>
+																<xs:element name="ID2" type="xs:unsignedShort"/>
+																<xs:element name="ext_data_start_address" type="xs:unsignedInt" minOccurs="0"/>
+																<xs:element name="ext_data_length" type="xs:unsignedInt" minOccurs="0"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Loop_padding_word">
+											<xs:complexType>
+												<xs:sequence minOccurs="0" maxOccurs="unbounded">
+													<xs:element name="padding_word_1" default="FFFF">
+														<xs:simpleType>
+															<xs:restriction base="xs:hexBinary">
+																<xs:length value="2"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="padding_word_2" default="FFFF">
+														<xs:simpleType>
+															<xs:restriction base="xs:hexBinary">
+																<xs:length value="2"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Loop_data_block">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="data_block" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:choice>
+																<xs:element name="pip_metadata">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="length" type="xs:unsignedInt" minOccurs="0"/>
+																			<xs:element name="number_of_metadata_block_entries" type="xs:unsignedShort"/>
+																			<xs:element name="Loop_metadata_block_header">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="metadata_block_header" minOccurs="0" maxOccurs="unbounded">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="ref_to_PlayItem_id" type="xs:unsignedShort"/>
+																									<xs:element name="ref_to_secondary_video_stream_id">
+																										<xs:simpleType>
+																											<xs:restriction base="xs:unsignedByte"/>
+																										</xs:simpleType>
+																									</xs:element>
+																									<xs:element name="reserved_for_future_use_1" minOccurs="0">
+																										<xs:simpleType>
+																											<xs:restriction base="xs:hexBinary">
+																												<xs:length value="1"/>
+																											</xs:restriction>
+																										</xs:simpleType>
+																									</xs:element>
+																									<xs:element name="pip_timeline_type">
+																										<xs:simpleType>
+																											<xs:restriction base="xs:unsignedByte"/>
+																										</xs:simpleType>
+																									</xs:element>
+																									<xs:element name="flags">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="is_luma_key" type="xs:boolean"/>
+																												<xs:element name="trick_playing_flag" type="xs:boolean"/>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																									<xs:element name="reserved_for_word_align" minOccurs="0">
+																										<xs:simpleType>
+																											<xs:restriction base="xs:hexBinary">
+																												<xs:length value="2"/>
+																											</xs:restriction>
+																										</xs:simpleType>
+																									</xs:element>
+																									<xs:element name="Select_luma_key">
+																										<xs:complexType>
+																											<xs:choice>
+																												<xs:element name="is_luma_key_1">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="upper_limit_luma_key">
+																																<xs:simpleType>
+																																	<xs:restriction base="xs:unsignedByte"/>
+																																</xs:simpleType>
+																															</xs:element>
+																															<xs:element name="reserved_for_future_use" minOccurs="0">
+																																<xs:simpleType>
+																																	<xs:restriction base="xs:hexBinary">
+																																		<xs:length value="1"/>
+																																	</xs:restriction>
+																																</xs:simpleType>
+																															</xs:element>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																												<xs:element name="is_luma_key_0" minOccurs="0">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="reserved_for_future_use" minOccurs="0">
+																																<xs:simpleType>
+																																	<xs:restriction base="xs:hexBinary">
+																																		<xs:length value="2"/>
+																																	</xs:restriction>
+																																</xs:simpleType>
+																															</xs:element>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:choice>
+																										</xs:complexType>
+																									</xs:element>
+																									<xs:element name="reserved_for_future_use_2" minOccurs="0">
+																										<xs:simpleType>
+																											<xs:restriction base="xs:hexBinary">
+																												<xs:length value="2"/>
+																											</xs:restriction>
+																										</xs:simpleType>
+																									</xs:element>
+																									<xs:element name="metadata_block_data_start_address" type="xs:unsignedInt" minOccurs="0"/>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="Loop_padding_word">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="padding_word" default="FFFF" minOccurs="0" maxOccurs="unbounded">
+																							<xs:simpleType>
+																								<xs:restriction base="xs:hexBinary">
+																									<xs:length value="2"/>
+																								</xs:restriction>
+																							</xs:simpleType>
+																						</xs:element>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="Loop_metadata_block">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="metadata_block" maxOccurs="unbounded">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="metadata_block_data">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="number_of_pip_metadata_entries" type="xs:unsignedShort"/>
+																												<xs:element name="Loop_pip_metadata_entries">
+																													<xs:complexType>
+																														<xs:sequence>
+																															<xs:element name="pip_metadata" maxOccurs="unbounded">
+																																<xs:complexType>
+																																	<xs:sequence>
+																																		<xs:element name="pip_metadata_time_stamp" type="xs:unsignedInt"/>
+																																		<xs:element name="pip_composition_metadata">
+																																			<xs:complexType>
+																																				<xs:sequence>
+																																					<xs:element name="pip_horizontal_position" type="xs:unsignedShort"/>
+																																					<xs:element name="pip_vertical_position" type="xs:unsignedShort"/>
+																																					<xs:element name="pip_scale">
+																																						<xs:simpleType>
+																																							<xs:restriction base="xs:unsignedByte"/>
+																																						</xs:simpleType>
+																																					</xs:element>
+																																					<xs:element name="reserved_for_future_use" minOccurs="0">
+																																						<xs:simpleType>
+																																							<xs:restriction base="xs:hexBinary">
+																																								<xs:length value="1"/>
+																																							</xs:restriction>
+																																						</xs:simpleType>
+																																					</xs:element>
+																																				</xs:sequence>
+																																			</xs:complexType>
+																																		</xs:element>
+																																	</xs:sequence>
+																																</xs:complexType>
+																															</xs:element>
+																														</xs:sequence>
+																													</xs:complexType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																									<xs:element name="Loop_padding_word">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="padding_word" default="FFFF" minOccurs="0" maxOccurs="unbounded">
+																													<xs:simpleType>
+																														<xs:restriction base="xs:hexBinary">
+																															<xs:length value="2"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:choice>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Loop_padding_word_4">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="padding_word" default="FFFF" minOccurs="0" maxOccurs="unbounded">
+											<xs:simpleType>
+												<xs:restriction base="xs:hexBinary">
+													<xs:length value="2"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="FileName" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Version" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

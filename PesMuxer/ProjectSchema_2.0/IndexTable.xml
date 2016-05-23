@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<IndexTableFile Version="0099" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="IndexTable.xsd">
+  <type_indicator>INDX</type_indicator>
+  <version_number>0200</version_number>
+  <AppInfoBDMV>
+    <content_provider_user_data />
+  </AppInfoBDMV>
+  <Loop_padding_word_1 />
+  <Indexes>
+    <FirstPlayback>
+      <FirstPlayback_object_type>01</FirstPlayback_object_type>
+      <Select_FirstPlayback_object>
+        <FirstPlayback_mobj>
+          <HDMV_Title_playback_type>00</HDMV_Title_playback_type>
+          <FirstPlayback_mobj_id_ref>65535</FirstPlayback_mobj_id_ref>
+        </FirstPlayback_mobj>
+      </Select_FirstPlayback_object>
+    </FirstPlayback>
+    <TopMenu>
+      <TopMenu_object_type>01</TopMenu_object_type>
+      <Select_TopMenu_object>
+        <TopMenu_mobj>
+          <HDMV_Title_playback_type>01</HDMV_Title_playback_type>
+          <TopMenu_mobj_id_ref>0</TopMenu_mobj_id_ref>
+        </TopMenu_mobj>
+      </Select_TopMenu_object>
+    </TopMenu>
+    <number_of_Titles>0</number_of_Titles>
+    <Loop_Title />
+  </Indexes>
+  <Loop_padding_word_2 />
+  <Loop_padding_word_3 />
+</IndexTableFile>

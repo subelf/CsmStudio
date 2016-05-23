@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<xs:schema elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0.0.0000" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="IndexTableFile">
+		<xs:annotation>
+			<xs:documentation>There should be only one element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="type_indicator" default="INDX">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="4"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="version_number">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="4"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Indexes_start_address" type="xs:unsignedLong" minOccurs="0"/>
+				<xs:element name="ExtensionData_start_address" type="xs:unsignedLong" minOccurs="0"/>
+				<xs:element name="reserved_for_future_use" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:hexBinary">
+							<xs:length value="24"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="AppInfoBDMV">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="length" type="xs:unsignedLong" default="34" minOccurs="0"/>
+							<xs:element name="reserved_for_future_use" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:hexBinary">
+										<xs:length value="2"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="content_provider_user_data">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="32"/>
+										<xs:minLength value="0"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Loop_padding_word_1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="padding_word" default="FFFF" minOccurs="0" maxOccurs="unbounded">
+								<xs:simpleType>
+									<xs:restriction base="xs:hexBinary">
+										<xs:length value="2"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Indexes">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="length" type="xs:unsignedLong" minOccurs="0"/>
+							<xs:element name="FirstPlayback">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FirstPlayback_object_type">
+											<xs:simpleType>
+												<xs:restriction base="xs:hexBinary">
+													<xs:length value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="reserved_for_future_use" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:hexBinary">
+													<xs:length value="4"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Select_FirstPlayback_object">
+											<xs:complexType>
+												<xs:choice>
+													<xs:element name="FirstPlayback_mobj">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="HDMV_Title_playback_type">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="1"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="reserved_for_word_align" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="2"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="FirstPlayback_mobj_id_ref">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:unsignedShort"/>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="reserved_for_future_use" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="4"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="FirstPlayback_bdjo">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="BD-J_Title_playback_type">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="1"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="reserved_for_word_align_1" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="2"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="FirstPlayback_bdjo_file_name">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:length value="5"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="reserved_for_word_align_2" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="1"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:choice>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="TopMenu">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="TopMenu_object_type">
+											<xs:simpleType>
+												<xs:restriction base="xs:hexBinary">
+													<xs:length value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="reserved_for_future_use" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:hexBinary">
+													<xs:length value="4"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Select_TopMenu_object">
+											<xs:complexType>
+												<xs:choice>
+													<xs:element name="TopMenu_mobj">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="HDMV_Title_playback_type" default="01" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="1"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="reserved_for_word_align" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="2"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="TopMenu_mobj_id_ref">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:unsignedShort"/>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="reserved_for_future_use" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="4"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="TopMenu_bdjo">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="BD-J_Title_playback_type" default="11" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="1"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="reserved_for_word_align_1" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="2"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="TopMenu_bdjo_file_name">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:length value="5"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="reserved_for_word_align_2" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:hexBinary">
+																			<xs:length value="1"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:choice>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="number_of_Titles">
+								<xs:simpleType>
+									<xs:restriction base="xs:unsignedShort">
+										<xs:minInclusive value="0"/>
+										<xs:maxInclusive value="999"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="Loop_Title">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Title" minOccurs="0" maxOccurs="999">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Title_object_type">
+														<xs:simpleType>
+															<xs:restriction base="xs:hexBinary">
+																<xs:length value="1"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Title_access_type">
+														<xs:simpleType>
+															<xs:restriction base="xs:hexBinary">
+																<xs:length value="1"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="reserved_for_future_use" minOccurs="0">
+														<xs:simpleType>
+															<xs:restriction base="xs:hexBinary">
+																<xs:length value="4"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Select_Title_object">
+														<xs:complexType>
+															<xs:choice>
+																<xs:element name="Title_mobj">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="HDMV_Title_playback_type">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:hexBinary">
+																						<xs:length value="1"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="reserved_for_word_align" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:hexBinary">
+																						<xs:length value="2"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="Title_mobj_id_ref">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:unsignedShort">
+																						<xs:minInclusive value="0"/>
+																						<xs:maxInclusive value="1000"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="reserved_for_future_use" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:hexBinary">
+																						<xs:length value="4"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="Title_bdjo">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="BD-J_Title_playback_type">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:hexBinary">
+																						<xs:length value="1"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="reserved_for_word_align_1" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:hexBinary">
+																						<xs:length value="2"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="Title_bdjo_file_name">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:length value="5"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="reserved_for_word_align_2" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:hexBinary">
+																						<xs:length value="1"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:choice>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Loop_padding_word_2">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="padding_word" default="FFFF" minOccurs="0" maxOccurs="unbounded">
+								<xs:simpleType>
+									<xs:restriction base="xs:hexBinary">
+										<xs:length value="2"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ExtensionData" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="length" type="xs:unsignedInt" minOccurs="0"/>
+							<xs:element name="data_block_start_address" type="xs:unsignedInt" minOccurs="0"/>
+							<xs:element name="reserved_for_word_align" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:hexBinary">
+										<xs:length value="3"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="number_of_ext_data_entries" type="xs:unsignedByte"/>
+							<xs:element name="Loop_ext_data_entries">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ext_data_entry" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="ID1" type="xs:unsignedShort"/>
+													<xs:element name="ID2" type="xs:unsignedShort"/>
+													<xs:element name="ext_data_start_address" type="xs:unsignedInt" minOccurs="0"/>
+													<xs:element name="ext_data_length" type="xs:unsignedInt" minOccurs="0"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Loop_padding_word">
+								<xs:complexType>
+									<xs:sequence minOccurs="0" maxOccurs="unbounded">
+										<xs:element name="padding_word_1" default="FFFF">
+											<xs:simpleType>
+												<xs:restriction base="xs:hexBinary">
+													<xs:length value="2"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="padding_word_2" default="FFFF">
+											<xs:simpleType>
+												<xs:restriction base="xs:hexBinary">
+													<xs:length value="2"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Loop_data_block">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="data_block" maxOccurs="unbounded">
+											<xs:complexType/>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Loop_padding_word_3">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="padding_word" default="FFFF" minOccurs="0" maxOccurs="unbounded">
+								<xs:simpleType>
+									<xs:restriction base="xs:hexBinary">
+										<xs:length value="2"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Version" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

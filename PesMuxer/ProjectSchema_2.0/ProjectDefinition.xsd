@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<xs:schema targetNamespace="http://tempuri.org/ProjectDefinition.xsd" elementFormDefault="qualified" attributeFormDefault="qualified" version="2.0.0.0000" id="NewDataSet" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://tempuri.org/ProjectDefinition.xsd" xmlns:mstns="http://tempuri.org/ProjectDefinition.xsd">
+	<xs:element name="ProjectDefinition">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Information">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ProjectName">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="512"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="Author">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="255"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="Manufacturer">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="255"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="DriveType" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="BD9"/>
+										<xs:enumeration value="BD25/50"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="XML_List">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="IndexTableFile">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="512"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="MovieObjectFile">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="512"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="MoviePlayListFile">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="512"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="CLIPDescriptorFile">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="512"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FSDescriptorFile">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="512"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Transaction">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="DB_process">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="IndexTable_process" type="xs:boolean"/>
+										<xs:element name="MovieObject_process" type="xs:boolean"/>
+										<xs:element name="MoviePlayList_List">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Playlist_id" minOccurs="0" maxOccurs="unbounded">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:length value="5"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="All_PlayLists" type="xs:boolean" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="CLPI_List">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CLIP_id" minOccurs="0" maxOccurs="unbounded">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:length value="5"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="All_CLPI" type="xs:boolean" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="DB_dirs">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="DB_Intermediatefile_dir">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="512"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="DB_output_dir">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="512"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="TS_process">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="M2TS_List">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CLIP_id" minOccurs="0" maxOccurs="unbounded">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:length value="5"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="All_M2TS" type="xs:boolean" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="TP_extra_header">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="copy_permission_indicator" type="xs:unsignedByte"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Log_file_flags" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Buffer" type="xs:boolean" minOccurs="0"/>
+													<xs:element name="Packet" type="xs:boolean" minOccurs="0"/>
+													<xs:element name="General" type="xs:boolean" minOccurs="0"/>
+													<xs:element name="Aui" type="xs:boolean" minOccurs="0"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FS_process" type="xs:boolean"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Version" use="required" form="unqualified">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
