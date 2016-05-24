@@ -1,0 +1,3 @@
+[submodule "sub/Spp2Pgs"]
+	path = sub/Spp2Pgs
+	url = https://github.com/subelf/Spp2Pgs.git

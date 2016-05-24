@@ -7,20 +7,50 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PesMuxer", "PesMuxer\PesMux
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuxerTest", ".Test\MuxerTest\MuxerTest.csproj", "{6A8175DA-07C1-439A-AEC1-F6A677C37D32}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Spp2PgsNet", "sub\Spp2Pgs\Spp2PgsNet\Spp2PgsNet.vcxproj", "{ED161A43-6432-4F8D-9D2B-C4AC8AA8CC49}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libspp2pgs", "sub\Spp2Pgs\libspp2pgs\libspp2pgs.vcxproj", "{821D4850-3AA7-4D9C-50EB-5E7CB22A3A3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{05E5C8A7-2FD2-4D4C-B89F-623595B52CDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{05E5C8A7-2FD2-4D4C-B89F-623595B52CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{05E5C8A7-2FD2-4D4C-B89F-623595B52CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{05E5C8A7-2FD2-4D4C-B89F-623595B52CDC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6A8175DA-07C1-439A-AEC1-F6A677C37D32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6A8175DA-07C1-439A-AEC1-F6A677C37D32}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A8175DA-07C1-439A-AEC1-F6A677C37D32}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6A8175DA-07C1-439A-AEC1-F6A677C37D32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05E5C8A7-2FD2-4D4C-B89F-623595B52CDC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{05E5C8A7-2FD2-4D4C-B89F-623595B52CDC}.Debug|x64.Build.0 = Debug|Any CPU
+		{05E5C8A7-2FD2-4D4C-B89F-623595B52CDC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{05E5C8A7-2FD2-4D4C-B89F-623595B52CDC}.Debug|x86.Build.0 = Debug|Any CPU
+		{05E5C8A7-2FD2-4D4C-B89F-623595B52CDC}.Release|x64.ActiveCfg = Release|Any CPU
+		{05E5C8A7-2FD2-4D4C-B89F-623595B52CDC}.Release|x64.Build.0 = Release|Any CPU
+		{05E5C8A7-2FD2-4D4C-B89F-623595B52CDC}.Release|x86.ActiveCfg = Release|Any CPU
+		{05E5C8A7-2FD2-4D4C-B89F-623595B52CDC}.Release|x86.Build.0 = Release|Any CPU
+		{6A8175DA-07C1-439A-AEC1-F6A677C37D32}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6A8175DA-07C1-439A-AEC1-F6A677C37D32}.Debug|x64.Build.0 = Debug|Any CPU
+		{6A8175DA-07C1-439A-AEC1-F6A677C37D32}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6A8175DA-07C1-439A-AEC1-F6A677C37D32}.Debug|x86.Build.0 = Debug|Any CPU
+		{6A8175DA-07C1-439A-AEC1-F6A677C37D32}.Release|x64.ActiveCfg = Release|Any CPU
+		{6A8175DA-07C1-439A-AEC1-F6A677C37D32}.Release|x64.Build.0 = Release|Any CPU
+		{6A8175DA-07C1-439A-AEC1-F6A677C37D32}.Release|x86.ActiveCfg = Release|Any CPU
+		{6A8175DA-07C1-439A-AEC1-F6A677C37D32}.Release|x86.Build.0 = Release|Any CPU
+		{ED161A43-6432-4F8D-9D2B-C4AC8AA8CC49}.Debug|x64.ActiveCfg = Debug|x64
+		{ED161A43-6432-4F8D-9D2B-C4AC8AA8CC49}.Debug|x64.Build.0 = Debug|x64
+		{ED161A43-6432-4F8D-9D2B-C4AC8AA8CC49}.Debug|x86.ActiveCfg = Debug|Win32
+		{ED161A43-6432-4F8D-9D2B-C4AC8AA8CC49}.Debug|x86.Build.0 = Debug|Win32
+		{ED161A43-6432-4F8D-9D2B-C4AC8AA8CC49}.Release|x64.ActiveCfg = ReleaseClr|x64
+		{ED161A43-6432-4F8D-9D2B-C4AC8AA8CC49}.Release|x64.Build.0 = ReleaseClr|x64
+		{ED161A43-6432-4F8D-9D2B-C4AC8AA8CC49}.Release|x86.ActiveCfg = ReleaseClr|Win32
+		{ED161A43-6432-4F8D-9D2B-C4AC8AA8CC49}.Release|x86.Build.0 = ReleaseClr|Win32
+		{821D4850-3AA7-4D9C-50EB-5E7CB22A3A3E}.Debug|x64.ActiveCfg = Debug|x64
+		{821D4850-3AA7-4D9C-50EB-5E7CB22A3A3E}.Debug|x64.Build.0 = Debug|x64
+		{821D4850-3AA7-4D9C-50EB-5E7CB22A3A3E}.Debug|x86.ActiveCfg = Debug|Win32
+		{821D4850-3AA7-4D9C-50EB-5E7CB22A3A3E}.Debug|x86.Build.0 = Debug|Win32
+		{821D4850-3AA7-4D9C-50EB-5E7CB22A3A3E}.Release|x64.ActiveCfg = ReleaseClr|x64
+		{821D4850-3AA7-4D9C-50EB-5E7CB22A3A3E}.Release|x64.Build.0 = ReleaseClr|x64
+		{821D4850-3AA7-4D9C-50EB-5E7CB22A3A3E}.Release|x86.ActiveCfg = ReleaseClr|Win32
+		{821D4850-3AA7-4D9C-50EB-5E7CB22A3A3E}.Release|x86.Build.0 = ReleaseClr|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
