@@ -13,6 +13,11 @@ namespace PesMuxer.MuxProject
 
 		public ClipEntry(uint id, TimeSpan startTime, TimeSpan endTime)
 		{
+			if(id > 100000)
+			{
+				throw new ArgumentOutOfRangeException("id", "Id of clip should not exceed 99999.");
+			}
+
 			this[ClipIdKey] = Clause(id.ToString("00000"));
 			this["ClipStartTime"] = Clause(startTime.ToBdTimeValue().ToString());
 			this["ClipEndTime"] = Clause(endTime.ToBdTimeValue().ToString());
@@ -26,16 +31,24 @@ namespace PesMuxer.MuxProject
 			get { return this[ClipIdKey].Render(null); }
 		}
 
-		private List<PgsEntry> pgsList = new List<PgsEntry>();
+		private Dictionary<ushort, PgsEntry> pgsList = new Dictionary<ushort, PgsEntry>();
 
 		public void AddPgs(PgsEntry pgs)
 		{
-			this.pgsList.Add(pgs.AssertNotNull("pgs"));
+			pgs.AssertNotNull("pgs");
+			if(pgsList.ContainsKey(pgs.Pid))
+			{
+				throw new InvalidOperationException("A pgs with same Pid exists.");
+			}
+			pgsList[pgs.Pid] = pgs;
 		}
 
 		public void AddPgsList(IEnumerable<PgsEntry> pgsList)
 		{
-			this.pgsList.AddRange(pgsList.AssertNotNull("pgsList"));
+			foreach(var iPgs in pgsList)
+			{
+				this.AddPgs(iPgs);
+			}
 		}
 
 		private string RenderPgsEntries(ITexplate texplate)
@@ -54,7 +67,7 @@ namespace PesMuxer.MuxProject
 
 			if (clause != null)
 			{
-				foreach (var iPgs in this.pgsList)
+				foreach (var iPgs in this.pgsList.Values)
 				{
 					using (texplate.EnterContext(iPgs))
 					{

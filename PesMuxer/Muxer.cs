@@ -17,6 +17,10 @@ namespace PesMuxer
 		private const ushort PgsPidStart = 0x1200;
 		public static ushort GetPgsPid(byte id)
 		{
+			if(id >= 32)
+			{
+				throw new InvalidOperationException("Id of cannot exceed 31.");
+			}
 			return (ushort)(PgsPidStart + id);
 		}
 
