@@ -7,27 +7,31 @@ using BluraySharp.Common.BdStandardPart;
 using System.IO;
 using System.Diagnostics;
 
-namespace PesMuxer
+namespace CsmStudio.ProjectManager.Compile
 {
 	static class ExtensionMethods
 	{
 		[Conditional("DEBUG")]
 		public static void AssertNotNull(this object argument)
 		{
-			if (object.ReferenceEquals(argument, null))
-			{
-				throw new NullReferenceException();
-			}
+			object.ReferenceEquals(argument, null).FalseOrThrow(new NullReferenceException());
 		}
 
 		public static T AssertNotNull<T>(this T argument, string paramName)
 		{
-			if(object.ReferenceEquals(argument, null))
-			{
-				throw new ArgumentNullException(paramName);
-			}
+			object.ReferenceEquals(argument, null).FalseOrThrow(new ArgumentNullException(paramName));
 
 			return argument;
+		}
+
+		public static void TrueOrThrow<T>(this bool flag, T ex) where T : Exception
+		{
+			if (!flag) throw ex;
+		}
+
+		public static void FalseOrThrow<T>(this bool flag, T ex) where T : Exception
+		{
+			if (flag) throw ex;
 		}
 
 		public static uint ToBdTimeValue(this TimeSpan span)
@@ -36,19 +40,19 @@ namespace PesMuxer
 			return BdTime.TicksToTimeValue(span.Ticks);
 		}
 
-		public static void SafeCreate(this DirectoryInfo dirInfo, string paramName)
+		public static DirectoryInfo SafeCreate(this DirectoryInfo dirInfo, string paramName)
 		{
 			dirInfo.AssertNotNull(paramName).Create();
 			dirInfo.AssertExists();
+			return dirInfo;
 		}
 
-		public static void AssertExists(this FileSystemInfo dirInfo)
+		public static T AssertExists<T>(this T fsInfo)
+			where T : FileSystemInfo
 		{
-			dirInfo.AssertNotNull();
-			if (!dirInfo.Exists)
-			{
-				throw new FileNotFoundException(dirInfo.FullName);
-			}
+			fsInfo.AssertNotNull();
+			fsInfo.Exists.TrueOrThrow(new FileNotFoundException(fsInfo.FullName));
+			return fsInfo;
 		}
 
 		public static DirectoryInfo NavigateTo(this DirectoryInfo dir, string path)

@@ -26,17 +26,16 @@ namespace PesMuxer
 
 		public Muxer(MuxerSettings settings)
 		{
-			settings.AssertNotNull("settings");
+			settings.AssertNotNull("settings").Validate();
 
-			this.RegisterIncludes(settings.SchemaDir);
-			this.RegisterTmls(settings.SchemaDir.NavigateTo(TmlPath));
+			this.RegisterIncludes(settings.SchemaDir.AssertNotNull("settings.SchemaDir"));
+			this.RegisterTmls(settings.TmlDir);
 
 			this.ConnectMuxServer(settings.MuxServerUri);
 		}
 
 		#region Initialization
 
-		const string TmlPath = "Templates";
 		const string ClipDesc = "CLIPDescriptor";
 		const string ProjDef = "ProjectDefinition";
 		const string XsdExt = ".xsd";
@@ -95,12 +94,9 @@ namespace PesMuxer
 
 		private void RegisterIncludes(DirectoryInfo schemaDir)
 		{
-			if (!schemaDir.Exists)
-			{
-				throw new DirectoryNotFoundException(schemaDir.FullName);
-			}
+			schemaDir.AssertExists();
 
-			foreach(var iInclude in IncludeList)
+			foreach (var iInclude in IncludeList)
 			{
 				this[iInclude.Key] = Clause(GetFileName(schemaDir, iInclude.Value));
 			}
@@ -108,10 +104,7 @@ namespace PesMuxer
 
 		private void RegisterTmls(DirectoryInfo tmlDir)
 		{
-			if (!tmlDir.Exists)
-			{
-				throw new DirectoryNotFoundException(tmlDir.FullName);
-			}
+			tmlDir.AssertExists();
 
 			foreach (var iTml in TmlList)
 			{
@@ -137,7 +130,7 @@ namespace PesMuxer
 			}
 		}
 
-		public async Task<bool> Mux(Project project)
+		public async Task<bool> Mux(Project project, IProgressReporter reporter)
 		{
 			var tTpl = new Texplate.Texplate();
 			using (tTpl.EnterContext(this))
@@ -163,20 +156,33 @@ namespace PesMuxer
 				MuxEnqueueStruct tMuxTaskDef = new MuxEnqueueStruct(tProjDefFile.FullName, project.ClipCount);
 				var tMuxTask = muxService.Enqueue(tMuxTaskDef);
 
-				return await Task.Run(() => WaitMuxTask(tMuxTask));
+				return await Task.Run(() => WaitMuxTask(tMuxTask, reporter));
 			}
 		}
 
-		private bool WaitMuxTask(Guid muxTaskId)
+		private bool WaitMuxTask(Guid muxTaskId, IProgressReporter reporter)
 		{
+			reporter.Amount = 100f;
+
 			for (;;)
 			{
+				if(reporter.IsCanceled)
+				{
+					muxService.Cancel(muxTaskId);
+				}
+
 				var tStatus = muxService.GetRequestStatus(muxTaskId);
 				if (tStatus.HasFlag(MuxRequestStatus.EndFlag))
 				{
 					var tIsOk = tStatus.HasFlag(MuxRequestStatus.Processed);
 					muxService.Confirm(muxTaskId);
+					reporter.OnTaskEnd();
 					return tIsOk;
+				}
+				else
+				{
+					var tInfo = muxService.GetRequestInfo(muxTaskId);
+					reporter.Progress = tInfo.TotalProgress;
 				}
 
 				Thread.Sleep(1000);
@@ -213,6 +219,8 @@ namespace PesMuxer
 							}
 						}
 					}
+
+					tmlReaders = null;
 				}
 
 				isDisposed = true;

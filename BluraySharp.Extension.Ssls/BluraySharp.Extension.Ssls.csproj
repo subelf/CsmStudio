@@ -30,6 +30,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BluraySharp, Version=0.3.5.0, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
+      <HintPath>..\packages\BluraySharp.0.3.5\lib\net40-client\BluraySharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BluraySharp.Definations, Version=0.3.5.0, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
+      <HintPath>..\packages\BluraySharp.0.3.5\lib\net40-client\BluraySharp.Definations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BluraySharp.Entities, Version=0.3.5.0, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
+      <HintPath>..\packages\BluraySharp.0.3.5\lib\net40-client\BluraySharp.Entities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,7 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SyncSubtitleList.cs" />
+    <Compile Include="EsGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

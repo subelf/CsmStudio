@@ -49,6 +49,18 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BluraySharp, Version=0.3.5.0, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
+      <HintPath>..\packages\BluraySharp.0.3.5\lib\net40-client\BluraySharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BluraySharp.Definations, Version=0.3.5.0, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
+      <HintPath>..\packages\BluraySharp.0.3.5\lib\net40-client\BluraySharp.Definations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BluraySharp.Entities, Version=0.3.5.0, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
+      <HintPath>..\packages\BluraySharp.0.3.5\lib\net40-client\BluraySharp.Entities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -59,6 +71,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compile\CompilingProgressManager.cs" />
+    <Compile Include="Compile\ICompilingLogger.cs" />
+    <Compile Include="Compile\ICompilingProgressManager.cs" />
+    <Compile Include="Compile\ICompilingProgressReporter.cs" />
+    <Compile Include="Compile\DocumentClipDescriptor.cs" />
+    <Compile Include="Compile\EsEntryDescriptor.cs" />
+    <Compile Include="Compile\CompilingSettings.cs" />
+    <Compile Include="Compile\PgsProgressReporter.cs" />
+    <Compile Include="Compile\ProjectCompiler.cs" />
+    <Compile Include="Compile\EsTrackDescriptor.cs" />
+    <Compile Include="Compile\PgsEntryDescriptor.cs" />
+    <Compile Include="CsmDocument.cs" />
+    <Compile Include="CsmProject.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +92,17 @@
       <Project>{f0f9b3ed-3d91-4094-91cf-e0f0fca4b644}</Project>
       <Name>BluraySharp.Extension.Ssls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PesMuxer\PesMuxer.csproj">
+      <Project>{05e5c8a7-2fd2-4d4c-b89f-623595b52cdc}</Project>
+      <Name>PesMuxer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\sub\Spp2Pgs\Spp2PgsNet\Spp2PgsNet.vcxproj">
+      <Project>{ed161a43-6432-4f8d-9d2b-c4ac8aa8cc49}</Project>
+      <Name>Spp2PgsNet</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

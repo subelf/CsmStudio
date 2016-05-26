@@ -12,7 +12,7 @@ namespace PesMuxer.MuxProject
 	{
 		public Project(ProjectSettings settings)
 		{
-			settings.AssertNotNull("settings");
+			settings.AssertNotNull("settings").Validate();
 
 			this.RegistDirs(settings.OutputDir, OutputDirList);
 			this.RegistDirs(settings.TempDir, TempDirList);
@@ -46,15 +46,12 @@ namespace PesMuxer.MuxProject
 
 		private void RegistDirs(DirectoryInfo rootDir, Dictionary<string, string> subDirMap)
 		{
-			if (!rootDir.Exists)
-			{
-				throw new DirectoryNotFoundException(rootDir.FullName);
-			}
+			rootDir.AssertExists();
 
 			foreach (var iOutputDir in subDirMap)
 			{
 				var tDirInfo = rootDir.NavigateTo(iOutputDir.Value);
-				tDirInfo.Create();
+				tDirInfo.SafeCreate(string.Empty);
 				this[iOutputDir.Key] = Clause(tDirInfo.FullName);
 			}
 		}

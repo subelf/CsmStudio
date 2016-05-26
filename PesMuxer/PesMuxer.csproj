@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IProgressReporter.cs" />
     <Compile Include="MuxProject\Project.cs" />
     <Compile Include="MuxProject\ClipEntry.cs" />
     <Compile Include="ExtensionMethods.cs" />
