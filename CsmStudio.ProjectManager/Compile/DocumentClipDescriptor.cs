@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CsmStudio.ProjectManager.Compile
 {
-	class DocumentClipDescriptor
+	public class DocumentClipDescriptor
 	{
 		public DocumentClipDescriptor(uint clipId, TimeSpan inTimeOffset, BdViFormat format, BdViFrameRate rate) :
 			this(clipId, inTimeOffset, format, rate,  null)

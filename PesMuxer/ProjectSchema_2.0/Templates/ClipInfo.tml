@@ -37,7 +37,7 @@
         <program_sequences>
           <SPN_program_sequence_start>0</SPN_program_sequence_start>
           <program_map_PID>256</program_map_PID>
-          <number_of_streams_in_ps>2</number_of_streams_in_ps>
+          <number_of_streams_in_ps>${PgsProgInfoCount}</number_of_streams_in_ps>
           <Loop_stream_in_ps>
           	${PgsProgInfoList}
           </Loop_stream_in_ps>

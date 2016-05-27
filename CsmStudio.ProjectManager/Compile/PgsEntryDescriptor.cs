@@ -1,4 +1,5 @@
-﻿using PesMuxer.MuxProject;
+﻿using BluraySharp.Common;
+using PesMuxer.MuxProject;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -10,7 +11,7 @@ namespace CsmStudio.ProjectManager.Compile
 {
 	class PgsEntryDescriptor
 	{
-		public PgsEntryDescriptor(ushort pid, string pesFile, TimeSpan length, CultureInfo lang)
+		public PgsEntryDescriptor(ushort pid, string pesFile, TimeSpan length, BdLang lang)
 		{
 			this.Pid = pid;
 			this.PesFile = pesFile;
@@ -21,6 +22,6 @@ namespace CsmStudio.ProjectManager.Compile
 		public ushort Pid { get; private set; }
 		public string PesFile { get; private set; }
 		public TimeSpan Length { get; private set; }
-		public CultureInfo Lang { get; private set; }
+		public BdLang Lang { get; private set; }
 	}
 }

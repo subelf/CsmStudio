@@ -16,7 +16,8 @@ namespace CsmStudio.ProjectManager.Compile
 		public CompilingProgressManager(ICompilingProgressReporter reporter, int numClips)
 		{
 			this.reporter = reporter;
-			this.threadLimit = new Semaphore(0, Environment.ProcessorCount);
+			this.numPgses = numClips;
+			this.threadLimit = new Semaphore(1, Environment.ProcessorCount);
 		}
 
 		private const float ProgressAmountScaled = 100f;
@@ -150,7 +151,7 @@ namespace CsmStudio.ProjectManager.Compile
 			{
 				reporter.Progress =
 					PgsProgressAmountScaled +
-					value * (MuxProgressRate * MuxProgressAmountScaled) / MuxProgressAmount;
+					value * MuxProgressAmountScaled / MuxProgressAmount;
 			}
 		}
 

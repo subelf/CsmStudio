@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace CsmStudio.ProjectManager.Compile
 {
-	class EsTrackDescriptor : IEnumerable<EsEntryDescriptor>
+	public class EsTrackDescriptor : IEnumerable<EsEntryDescriptor>
 	{
 		private IList<EsGroup> EsGroups;
 		public EsTrack Track { get; private set; }

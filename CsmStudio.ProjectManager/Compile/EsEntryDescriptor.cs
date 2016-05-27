@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CsmStudio.ProjectManager.Compile
 {
-	class EsEntryDescriptor
+	public class EsEntryDescriptor
 	{
 		private EsEntry entryInfo;
 

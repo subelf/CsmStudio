@@ -34,10 +34,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>snk.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BluraySharp.Definations, Version=0.3.5.0, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
@@ -46,6 +43,10 @@
     </Reference>
     <Reference Include="MonteCarlo.External.MuxRemoting">
       <HintPath>..\lib\MonteCarlo.External.MuxRemoting.dll</HintPath>
+    </Reference>
+    <Reference Include="MuxCommon, Version=2.2.1.3, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\MuxCommon.DLL</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -96,15 +97,11 @@
     <None Include="ProjectSchema_2.0\Templates\PgsEntry.tml" />
     <None Include="ProjectSchema_2.0\Templates\PgsProgInfo.tml" />
     <None Include="ProjectSchema_2.0\Templates\ProjectDefinition.tml" />
-    <None Include="snk.snk" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ProjectSchema_2.0\IndexTable.xml" />
     <Content Include="ProjectSchema_2.0\MovieObject.xml" />
     <Content Include="ProjectSchema_2.0\MoviePlayList.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

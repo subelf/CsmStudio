@@ -13,10 +13,11 @@ using System.Threading.Tasks;
 using BluraySharp;
 using BluraySharp.Common;
 using BluraySharp.Common.BdStandardPart;
+using System.Net.Sockets;
 
 namespace CsmStudio.ProjectManager.Compile
 {
-	sealed class ProjectCompiler : IDisposable
+	public sealed class ProjectCompiler : IDisposable
 	{
 		private object lkMuxer = new object();
 		private Muxer pesMuxer = null;
@@ -40,7 +41,7 @@ namespace CsmStudio.ProjectManager.Compile
 		{
 			s2pEncoder = new Spp2Pgs(new MyS2PSettings(settings), new MyS2PLogger(logger));
 		}
-		
+
 		private void InitPesMuxer()
 		{
 			var tPmSettings = new MuxerSettings()
@@ -55,7 +56,7 @@ namespace CsmStudio.ProjectManager.Compile
 				{
 					pesMuxer = new Muxer(tPmSettings);  //assume muxer already started.
 
-					if (muxProc != null || muxProc.HasExited)
+					if (muxProc == null || muxProc.HasExited)
 					{
 						Dispose(ref muxProc);
 
@@ -72,8 +73,15 @@ namespace CsmStudio.ProjectManager.Compile
 				catch (RemotingException)
 				{
 				}
+				catch (NullReferenceException)
+				{
+				}
+				catch (SocketException)
+				{
+				}
 
 				ProcessStartInfo tStartInfo = new ProcessStartInfo(settings.MuxServerExeFile.FullName);
+				tStartInfo.CreateNoWindow = true;
 				muxProc = Process.Start(tStartInfo);
 
 				pesMuxer = new Muxer(tPmSettings);  //retry.
@@ -82,8 +90,11 @@ namespace CsmStudio.ProjectManager.Compile
 
 		private void MuxerProcess_Exited(object sender, EventArgs e)
 		{
-			Dispose(ref muxProc);
-			Dispose(ref pesMuxer);
+			lock (lkMuxer)
+			{
+				Dispose(ref muxProc);
+				Dispose(ref pesMuxer);
+			}
 		}
 
 		private Muxer GetPesMuxer()
@@ -99,6 +110,8 @@ namespace CsmStudio.ProjectManager.Compile
 			}
 		}
 
+		#region Compiling
+
 		private const string PesMuxOutputPath = "MuxTemp.{0}";
 		private const string PesEncOutputPath = "PesTemp.{0}";
 
@@ -106,7 +119,8 @@ namespace CsmStudio.ProjectManager.Compile
 		{
 			AssertNotDisposed();
 
-			var tProgressManager = new CompilingProgressManager(reporter, clips.Length);
+			var tPgsNum = clips.Sum(xClip => xClip.Tracks.Count);
+			var tProgressManager = new CompilingProgressManager(reporter, tPgsNum);
 
 			ProjectSettings tProjSettings = new ProjectSettings()
 			{
@@ -116,11 +130,12 @@ namespace CsmStudio.ProjectManager.Compile
 			Project tProj = new Project(tProjSettings);
 
 			var tPesDir = settings.TempDir.NavigateTo(string.Format(PesEncOutputPath, projectId)).SafeCreate(string.Empty);
-			var tClipTasks = 
+			var tClipTasks =
 				(from iClip in clips select CompileDocumentClip(tProgressManager, iClip, tPesDir)).ToArray();
 			await Task.WhenAll(tClipTasks);
 
-			return await pesMuxer.Mux(tProj, tProgressManager);
+			tProj.AddClipList(tClipTasks.Select(xClipTask => xClipTask.Result));
+			return await this.GetPesMuxer().Mux(tProj, tProgressManager);
 		}
 
 		private async Task<ClipEntry> CompileDocumentClip(CompilingProgressManager reporter, DocumentClipDescriptor clip, DirectoryInfo pesDir)
@@ -130,14 +145,14 @@ namespace CsmStudio.ProjectManager.Compile
 			foreach (var iTrack in clip.Tracks)
 			{
 				tPgsTaskList.Add(Task.Run(
-					() => CompileTrack(reporter, clip, iTrack, pesDir, Muxer.GetPgsPid(tId))
+					() => CompileTrack(reporter, clip, iTrack, pesDir, Muxer.GetPgsPid(tId++))
 					));
 			}
 			await Task.WhenAll(tPgsTaskList);
 
 			TimeSpan tMaxLength = tPgsTaskList.Max(xPgsTask => xPgsTask.Result.Length);
 			ClipEntry tClipEntry = new ClipEntry(clip.ClipId, clip.InTimeOffset, clip.InTimeOffset + tMaxLength);
-			
+
 			foreach (var iPgsTask in tPgsTaskList)
 			{
 				var tPgsDesc = iPgsTask.Result;
@@ -156,20 +171,28 @@ namespace CsmStudio.ProjectManager.Compile
 			using (var tPgsStream = new AnonymousPipeClientStream(PipeDirection.In, tPgsStreamServer.ClientSafePipeHandle))
 			using (var tReporter = reporter.CreatePgsProgressReporter())
 			{
-				var tEncodeTask = Task.Run(() => EncodePgs(clip, track, tPgsStreamServer, tReporter));
+				Func<int> tEncodeTaskAction = () =>
+				{
+					using (tPgsStreamServer)
+					{
+						return EncodePgs(clip, track, tPgsStreamServer, tReporter);
+					}
+				};
+
+				var tEncodeTask = Task.Run(tEncodeTaskAction);
 
 				var tPesFileName = string.Format(PesFileNameFmt, clip.ClipId, pid);
 				FileInfo tPesFile = pesDir.PickFile(tPesFileName);
 				Pgs2Pes(tPgsStream, tPesFile);
-
+				
 				return new PgsEntryDescriptor(
 					pid,
 					tPesFile.FullName,
 					TimeFromFrameCount(tEncodeTask.Result, clip.Rate),
-					track.Track.Language
+					track.Track.Lang
 					);
 			}
-		}
+		}	
 
 		private int EncodePgs(DocumentClipDescriptor clip, EsTrackDescriptor track, Stream output, Spp2PgsNet.IProgressReporter reporter)
 		{
@@ -184,7 +207,6 @@ namespace CsmStudio.ProjectManager.Compile
 				{
 					if (iEsEntry == null)
 					{
-						tOutput.FlushAnchor();
 						continue;
 					}
 
@@ -204,11 +226,13 @@ namespace CsmStudio.ProjectManager.Compile
 						}
 					}
 				}
+
+				tOutput.FlushAnchor();
 			}
 
 			return maxFrameCount;
 		}
-
+		
 		#region Pgs2Pes
 
 		private static ulong ReadBE(byte[] tBuffer, int index, byte length)
@@ -254,6 +278,19 @@ namespace CsmStudio.ProjectManager.Compile
 			tBuffer[tByteIndex] |= (byte)(value << -tShift);
 		}
 
+		private static int ForceRead(Stream pgs, byte[] buffer, int offset, int count)
+		{
+			int tRead = 0;
+			while(tRead < count)
+			{
+				int tReadLen = pgs.Read(buffer, offset + tRead, count - tRead);
+				if (tReadLen == 0) break;
+
+				tRead += tReadLen;
+			}
+			return tRead;
+		}
+
 		private static void Pgs2Pes(Stream pgs, FileInfo pesFile)
 		{
 			using (FileStream tPes = pesFile.Create())
@@ -268,7 +305,7 @@ namespace CsmStudio.ProjectManager.Compile
 
 				for (;;)
 				{
-					tReadLen = pgs.Read(buffer, 0, 13);
+					tReadLen = ForceRead(pgs, buffer, 0, 13);
 					if (tReadLen != 13 || buffer[0] != 'P' || buffer[1] != 'G') break;
 
 					uint tPts = (uint)((long)ReadBE(buffer, 16, 32) + tPtsOffset);
@@ -288,7 +325,7 @@ namespace CsmStudio.ProjectManager.Compile
 					WriteBE(buffer, 0, 8, tType);
 					WriteBE(buffer, 8, 16, (ulong)tLen);
 
-					tReadLen = pgs.Read(buffer, 3, tLen);
+					tReadLen = ForceRead(pgs, buffer, 3, tLen);
 					if (tReadLen != tLen) break;
 
 					tPes.Write(buffer, 0, tLen + 3);
@@ -313,6 +350,8 @@ namespace CsmStudio.ProjectManager.Compile
 			return TimeSpan.FromSeconds(frames / rate.ToDouble());
 		}
 
+		#endregion Compiling
+
 		#region IDisposable
 
 		private bool isDisposed = false;
@@ -336,9 +375,12 @@ namespace CsmStudio.ProjectManager.Compile
 		{
 			if (!isDisposed)
 			{
-				Dispose(ref pesMuxer);
+				lock (lkMuxer)
+				{
+					Dispose(ref pesMuxer);
+					Dispose(ref muxProc);
+				}
 				Dispose(ref s2pEncoder);
-				Dispose(ref muxProc);
 
 				isDisposed = true;
 			}

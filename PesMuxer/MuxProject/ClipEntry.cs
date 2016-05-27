@@ -21,6 +21,7 @@ namespace PesMuxer.MuxProject
 			this[ClipIdKey] = Clause(id.ToString("00000"));
 			this["ClipStartTime"] = Clause(startTime.ToBdTimeValue().ToString());
 			this["ClipEndTime"] = Clause(endTime.ToBdTimeValue().ToString());
+			this["PgsProgInfoCount"] = Clause((xTexplate) => this.pgsList.Count.ToString());
 
 			this["PgsEntryList"] = Clause((xTexplate) => RenderPgsEntries(xTexplate));
 			this["PgsProgInfoList"] = Clause((xTexplate) => RenderPgsProgInfoes(xTexplate));

@@ -15,15 +15,26 @@ namespace BluraySharp.Extension.Ssls
 
 	public class EsGroup
 	{
-		public IDictionary<EsTrack, EsEntry> Entries { get; }
-		
+		public EsGroup()
+		{
+			this.Entries = new Dictionary<EsTrack, EsEntry>();
+			SyncOffset = TimeSpan.Zero;
+		}
+
+		public IDictionary<EsTrack, EsEntry> Entries { get; }		
 		public TimeSpan SyncOffset { get; set; }
 	}
 	
 	public class EsTrack
 	{
-		public CultureInfo Language { get; set; }
-		public BdStreamCodingType Type { get; set; }
+		public EsTrack(BdStreamCodingType type, BdLang lang)
+		{
+			this.Lang = lang;
+			this.Type = type;
+		}
+
+		public BdStreamCodingType Type { get; private set; }
+		public BdLang Lang { get; private set; }
 	}
 
 }

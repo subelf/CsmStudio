@@ -68,6 +68,8 @@ namespace PesMuxer
 				Activator.GetObject(
 					typeof(IMuxRemotingService), muxServerUri.AbsoluteUri
 					);
+
+			muxService.GetServiceStatus();
 		}
 
 		private static string GetFileName(DirectoryInfo dir, string fileName)
@@ -162,27 +164,29 @@ namespace PesMuxer
 
 		private bool WaitMuxTask(Guid muxTaskId, IProgressReporter reporter)
 		{
-			reporter.Amount = 100f;
+			const float Amount = 1.0f;
+
+			reporter.Amount = Amount;
 
 			for (;;)
 			{
-				if(reporter.IsCanceled)
+				if (reporter.IsCanceled)
 				{
 					muxService.Cancel(muxTaskId);
 				}
 
-				var tStatus = muxService.GetRequestStatus(muxTaskId);
+				var tInfo = muxService.GetRequestInfo(muxTaskId);
+				var tStatus = tInfo.Status;
+
+				reporter.Progress = tInfo.TotalProgress >= 0 ? tInfo.TotalProgress : 0;
 				if (tStatus.HasFlag(MuxRequestStatus.EndFlag))
 				{
 					var tIsOk = tStatus.HasFlag(MuxRequestStatus.Processed);
+					tIsOk &= tInfo.LastMuxStatusCode == MuxCommon.MuxStatusCode.MUX_SN_S_DONE;
+					if (tIsOk) reporter.Progress = Amount;
 					muxService.Confirm(muxTaskId);
 					reporter.OnTaskEnd();
 					return tIsOk;
-				}
-				else
-				{
-					var tInfo = muxService.GetRequestInfo(muxTaskId);
-					reporter.Progress = tInfo.TotalProgress;
 				}
 
 				Thread.Sleep(1000);
