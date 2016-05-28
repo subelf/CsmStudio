@@ -37,8 +37,16 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BluraySharp.Definations, Version=0.3.5.0, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
-      <HintPath>..\packages\BluraySharp.0.3.5\lib\net40-client\BluraySharp.Definations.dll</HintPath>
+    <Reference Include="BluraySharp, Version=0.3.6.132, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
+      <HintPath>..\.Test\packages\BluraySharp.0.3.6\lib\net40-client\BluraySharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BluraySharp.Definations, Version=0.3.6.132, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
+      <HintPath>..\.Test\packages\BluraySharp.0.3.6\lib\net40-client\BluraySharp.Definations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BluraySharp.Entities, Version=0.3.6.132, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
+      <HintPath>..\.Test\packages\BluraySharp.0.3.6\lib\net40-client\BluraySharp.Entities.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MonteCarlo.External.MuxRemoting">
