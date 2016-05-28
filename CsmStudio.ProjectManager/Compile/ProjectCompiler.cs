@@ -132,10 +132,51 @@ namespace CsmStudio.ProjectManager.Compile
 			var tPesDir = settings.TempDir.NavigateTo(string.Format(PesEncOutputPath, projectId)).SafeCreate(string.Empty);
 			var tClipTasks =
 				(from iClip in clips select CompileDocumentClip(tProgressManager, iClip, tPesDir)).ToArray();
-			await Task.WhenAll(tClipTasks);
+
+			var tPgsEncTask = Task.WhenAll(tClipTasks);
+			try { await tPgsEncTask; } catch { }
+
+			if (tPgsEncTask.Exception != null || reporter.IsCanceled)
+			{
+				ReportSummary(reporter, tPgsEncTask.Exception);
+				return false;
+			}
 
 			tProj.AddClipList(tClipTasks.Select(xClipTask => xClipTask.Result));
-			return await this.GetPesMuxer().Mux(tProj, tProgressManager);
+			var tPesMuxTask = this.GetPesMuxer().Mux(tProj, tProgressManager);
+			try { await tPesMuxTask; } catch { }
+
+			if (tPesMuxTask.Exception != null || reporter.IsCanceled)
+			{
+				ReportSummary(reporter, tPesMuxTask.Exception);
+				return false;
+			}
+
+			ReportSummary(reporter, null);
+			return true;
+		}
+
+		private void ReportSummary(ICompilingProgressReporter reporter, AggregateException ex)
+		{
+			if(ex != null)
+			{
+				foreach(var iEx in ex.InnerExceptions)
+				{
+					this.logger.Log(0, iEx.Message);
+				}
+
+				this.logger.Log(128, "Project compiling failed.");
+			}
+			else if (reporter.IsCanceled)
+			{
+				this.logger.Log(128, "Project compiling canceled.");
+			}
+			else
+			{
+				this.logger.Log(128, "Project compiled successful.");
+			}
+
+			reporter.OnTaskEnd();
 		}
 
 		private async Task<ClipEntry> CompileDocumentClip(CompilingProgressManager reporter, DocumentClipDescriptor clip, DirectoryInfo pesDir)
