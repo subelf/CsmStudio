@@ -237,7 +237,7 @@ namespace CsmStudio.ProjectManager.Compile
 
 		private int EncodePgs(DocumentClipDescriptor clip, EsTrackDescriptor track, Stream output, Spp2PgsNet.IProgressReporter reporter)
 		{
-			int maxFrameCount = 0;
+			int maxFrameCount = 1;
 
 			using (var tCtx = s2pEncoder.CreateSubPicProviderContext())
 			using (var tOutput = s2pEncoder.CreatePgsEncoder(output, clip.Format, clip.Rate))
@@ -253,13 +253,14 @@ namespace CsmStudio.ProjectManager.Compile
 
 					using (var tSpp = s2pEncoder.CreateSubPicProvider(tCtx, iEsEntry.Source))
 					{
+						var tOffset = (int)FrameCountFromTime(iEsEntry.SyncOffset, clip.Rate);
 						var tAdv =
 							s2pEncoder.CreateSppFrameStreamAdvisor(
 								tSpp, clip.Format, clip.Rate, -1, -1,
-								(int)FrameCountFromTime(iEsEntry.SyncOffset, clip.Rate)
+								tOffset, null
 								);
 
-						maxFrameCount = tAdv.LastPossibleImage;
+						maxFrameCount = Math.Max(tAdv.LastPossibleImage, tOffset + 1);
 
 						using (var tInput = s2pEncoder.CreateFrameStream(tSpp, tAdv))
 						{
