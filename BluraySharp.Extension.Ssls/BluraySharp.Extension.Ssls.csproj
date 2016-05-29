@@ -30,16 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BluraySharp, Version=0.3.6.132, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
-      <HintPath>..\.Test\packages\BluraySharp.0.3.6\lib\net40-client\BluraySharp.dll</HintPath>
+    <Reference Include="BluraySharp, Version=0.3.7.133, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
+      <HintPath>..\packages\BluraySharp.0.3.7\lib\net40-client\BluraySharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="BluraySharp.Definations, Version=0.3.6.132, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
-      <HintPath>..\.Test\packages\BluraySharp.0.3.6\lib\net40-client\BluraySharp.Definations.dll</HintPath>
+    <Reference Include="BluraySharp.Definations, Version=0.3.7.133, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
+      <HintPath>..\packages\BluraySharp.0.3.7\lib\net40-client\BluraySharp.Definations.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="BluraySharp.Entities, Version=0.3.6.132, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
-      <HintPath>..\.Test\packages\BluraySharp.0.3.6\lib\net40-client\BluraySharp.Entities.dll</HintPath>
+    <Reference Include="BluraySharp.Entities, Version=0.3.7.133, Culture=neutral, PublicKeyToken=d9c683a7c5aa778e, processorArchitecture=MSIL">
+      <HintPath>..\packages\BluraySharp.0.3.7\lib\net40-client\BluraySharp.Entities.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
