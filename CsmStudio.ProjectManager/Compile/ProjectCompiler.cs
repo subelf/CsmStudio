@@ -254,17 +254,18 @@ namespace CsmStudio.ProjectManager.Compile
 					using (var tSpp = s2pEncoder.CreateSubPicProvider(tCtx, iEsEntry.Source))
 					{
 						var tOffset = (int)FrameCountFromTime(iEsEntry.SyncOffset, clip.Rate);
-						var tAdv =
+						using (var tAdv =
 							s2pEncoder.CreateSppFrameStreamAdvisor(
 								tSpp, clip.Format, clip.Rate, -1, -1,
-								tOffset, null
-								);
-
-						maxFrameCount = Math.Max(tAdv.LastPossibleImage, tOffset + 1);
-
-						using (var tInput = s2pEncoder.CreateFrameStream(tSpp, tAdv))
+								tOffset, null)
+							)
 						{
-							s2pEncoder.Encode(tInput, tOutput, reporter);
+							maxFrameCount = Math.Max(tAdv.LastPossibleImage, tOffset + 1);
+
+							using (var tInput = s2pEncoder.CreateFrameStream(tSpp, tAdv))
+							{
+								s2pEncoder.Encode(tInput, tOutput, reporter);
+							}
 						}
 					}
 				}
