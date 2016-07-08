@@ -8,12 +8,11 @@ using System.IO;
 using System.IO.Pipes;
 using System.Linq;
 using System.Runtime.Remoting;
-using System.Text;
 using System.Threading.Tasks;
 using BluraySharp;
 using BluraySharp.Common;
-using BluraySharp.Common.BdStandardPart;
 using System.Net.Sockets;
+using System.ComponentModel;
 
 namespace CsmStudio.ProjectManager.Compile
 {
@@ -29,7 +28,17 @@ namespace CsmStudio.ProjectManager.Compile
 
 		public ProjectCompiler(CompilingSettings settings, ICompilingLogger logger)
 		{
-			settings.AssertNotNull("settings").Validate();
+			logger.AssertNotNull("logger");
+
+			try
+			{
+				settings.AssertNotNull("settings").Validate();
+			}
+			catch(IOException ex)
+			{
+				logger.Log(0, ex.Message);
+			}
+
 			this.settings = settings;
 			this.logger = logger;
 
@@ -52,6 +61,8 @@ namespace CsmStudio.ProjectManager.Compile
 
 			lock (lkMuxer)
 			{
+				Exception tEx = null;
+
 				try
 				{
 					pesMuxer = new Muxer(tPmSettings);  //assume muxer already started.
@@ -70,21 +81,39 @@ namespace CsmStudio.ProjectManager.Compile
 					return;
 
 				}
-				catch (RemotingException)
+				catch (RemotingException) { }
+				catch (SocketException) { }
+
+				try
 				{
+					Dispose(ref muxProc);
+					ProcessStartInfo tStartInfo = new ProcessStartInfo(settings.MuxServerExeFile.FullName);
+					tStartInfo.CreateNoWindow = true;
+					muxProc = Process.Start(tStartInfo);
+
+					pesMuxer = new Muxer(tPmSettings);  //retry.
 				}
-				catch (NullReferenceException)
+				catch(InvalidOperationException ex)
 				{
+					tEx = ex;
 				}
-				catch (SocketException)
+				catch(FileNotFoundException ex)
 				{
+					tEx = ex;
+				}
+				catch(RemotingException ex)
+				{
+					tEx = ex;
+				}
+				catch(Win32Exception ex)
+				{
+					tEx = ex;
 				}
 
-				ProcessStartInfo tStartInfo = new ProcessStartInfo(settings.MuxServerExeFile.FullName);
-				tStartInfo.CreateNoWindow = true;
-				muxProc = Process.Start(tStartInfo);
-
-				pesMuxer = new Muxer(tPmSettings);  //retry.
+				if (tEx != null)
+				{
+					logger.Log(0, tEx.Message);
+				}
 			}
 		}
 
@@ -106,6 +135,7 @@ namespace CsmStudio.ProjectManager.Compile
 					InitPesMuxer();
 				}
 
+				object.ReferenceEquals(pesMuxer, null).FalseOrThrow(new NullReferenceException("Muxer not initialized."));
 				return pesMuxer;
 			}
 		}
@@ -162,7 +192,7 @@ namespace CsmStudio.ProjectManager.Compile
 			{
 				foreach(var iEx in ex.InnerExceptions)
 				{
-					this.logger.Log(0, iEx.Message);
+					this.logger.Log(iEx);
 				}
 
 				this.logger.Log(128, "Project compiling failed.");
