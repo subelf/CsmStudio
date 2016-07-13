@@ -18,6 +18,7 @@ namespace CsmStudio.ProjectManager.Compile
 			this.reporter = reporter;
 			this.numPgses = numClips;
 			this.threadLimit = new Semaphore(Environment.ProcessorCount, Environment.ProcessorCount);
+			//this.threadLimit = new Semaphore(1, 1);
 		}
 
 		private const float ProgressAmountScaled = 100f;

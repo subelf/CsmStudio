@@ -101,6 +101,7 @@ namespace PesMuxer
 			foreach (var iInclude in IncludeList)
 			{
 				this[iInclude.Key] = Clause(GetFileName(schemaDir, iInclude.Value));
+				this[iInclude.Key + "Uri"] = Clause("file:///"+Uri.EscapeUriString(GetFileName(schemaDir, iInclude.Value).Replace('\\', '/')));
 			}
 		}
 

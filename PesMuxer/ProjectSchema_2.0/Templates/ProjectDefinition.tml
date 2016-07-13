@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<mstns:ProjectDefinition Version="0099" xmlns:mstns="http://tempuri.org/ProjectDefinition.xsd" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://tempuri.org/ProjectDefinition.xsd ${ProjDefSchema}">
+<mstns:ProjectDefinition Version="0099" xmlns:mstns="http://tempuri.org/ProjectDefinition.xsd" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://tempuri.org/ProjectDefinition.xsd ${ProjDefSchemaUri}">
   <mstns:Information>
     <mstns:ProjectName />
     <mstns:Author />
